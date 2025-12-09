@@ -18,7 +18,7 @@ const IntroSection = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 md:mb-6 text-[#0e6d62]">주변에 괜찮은 사람들이 없다면 여기입니다!</h2>
           
           {/* 이미지 갤러리 */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 md:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 md:mb-12">
             <div className="relative w-full aspect-square rounded-lg overflow-hidden max-w-md mx-auto">
               <Image
                 src="/육각형파티포인트.png"

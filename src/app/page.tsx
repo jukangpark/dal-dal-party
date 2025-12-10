@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero 섹션 */}
-      <section className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] flex items-center justify-center text-white overflow-hidden">
+      <section className="relative w-full h-screen sm:h-[70vh] md:h-[80vh] flex items-center justify-center text-white overflow-hidden">
         {/* 배경 비디오 */}
         <video
           autoPlay

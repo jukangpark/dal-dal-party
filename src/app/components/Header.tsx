@@ -21,39 +21,23 @@ const Header = () => {
     }
   };
 
-  // 섹션으로 스크롤
-  const scrollToSection = (sectionId: string) => {
-    // 홈 페이지가 아니면 먼저 홈으로 이동
-    if (pathname !== "/") {
-      router.push(`/#${sectionId}`);
-      return;
-    }
-
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-      setIsMobileMenuOpen(false);
-    }
+  // 페이지로 이동
+  const handlePageNavigation = (path: string) => {
+    router.push(path);
+    setIsMobileMenuOpen(false);
   };
 
-  const menuItems = [
-    { id: "intro", label: "파티 소개" },
-    { id: "status", label: "신청 현황" },
-    { id: "cost", label: "참가 비용" },
-    { id: "reviews", label: "후기" },
-    { id: "gallery", label: "갤러리" },
-    { id: "apply", label: "신청하기" },
+  // 페이지 네비게이션 메뉴
+  const pageMenuItems = [
+    { path: "/sulgaeting", label: "술개팅" },
+    { path: "/hexagon-party", label: "육각형파티" },
+    { path: "/star-party", label: "별별파티" },
+    { path: "/reservation", label: "예약하기" },
+    { path: "/customer-service", label: "고객센터" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0e6d62] text-white shadow-lg">
+    <header className="sticky top-0 z-50 bg-gradient-to-r bg-[#0e6d62] text-white shadow-lg">
       <div className="container mx-auto px-1 py-2 md:py-3">
         <div className="flex items-center justify-between">
           {/* 왼쪽 로고 + 타이틀 */}
@@ -71,16 +55,16 @@ const Header = () => {
               />
             </div>
             <h1 className="text-xl md:text-2xl font-bold">
-              광주 육각형 남녀 파티
+              술개팅
             </h1>
           </div>
 
           {/* 데스크톱 네비게이션 */}
           <nav className="hidden md:flex items-center gap-6">
-            {menuItems.map((item) => (
+            {pageMenuItems.map((item) => (
               <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                key={item.path}
+                onClick={() => handlePageNavigation(item.path)}
                 className="text-sm font-medium hover:text-gray-200 transition-colors duration-200 cursor-pointer"
               >
                 {item.label}
@@ -130,10 +114,10 @@ const Header = () => {
             style={{ backgroundColor: 'rgba(14, 109, 98, 0.4)' }}
           >
             <div className="flex flex-col gap-1 pt-2">
-              {menuItems.map((item) => (
+              {pageMenuItems.map((item) => (
                 <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  key={item.path}
+                  onClick={() => handlePageNavigation(item.path)}
                   className="text-left text-sm font-medium py-1.5 px-2 hover:bg-[#0a5a50] rounded transition-colors duration-200 cursor-pointer"
                 >
                   {item.label}

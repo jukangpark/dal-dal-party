@@ -10,7 +10,7 @@ const GallerySection = () => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true }}
     >
       <div className="container mx-auto max-w-4xl">
         <h2 className="text-4xl font-bold text-center mb-12 text-[#0e6d62]">실제 파티 사진</h2>

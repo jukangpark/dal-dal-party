@@ -176,8 +176,6 @@ const ApplyPage = () => {
 
   return (
     <div className="min-h-screen bg-[#d3ded3]">
-      <Header />
-      
       <div className="container mx-auto max-w-3xl px-3 md:px-4 py-6 md:py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -116,7 +116,7 @@ const ReviewsSection = () => {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true }}
               >
                 <ProgressBar
                   label={stat.label}
@@ -134,7 +134,7 @@ const ReviewsSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true }}
             className="text-2xl font-bold text-[#0e6d62] mb-6"
           >
             실제 참가자 후기
@@ -165,7 +165,7 @@ const ReviewsSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true }}
               className="flex justify-center mt-8"
             >
               <motion.button

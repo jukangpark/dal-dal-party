@@ -165,26 +165,15 @@ export default function Home() {
                   </ul>
 
                   {/* 버튼 */}
-                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        router.push(party.path);
-                      }}
-                      className={`flex-1 px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 bg-gradient-to-br ${party.color} text-white font-semibold rounded-lg hover:opacity-90 transition-opacity duration-300 text-xs sm:text-sm md:text-base whitespace-nowrap cursor-pointer`}
-                    >
-                      자세히 보기
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        router.push("/reservation");
-                      }}
-                      className="flex-1 px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 bg-gray-100 text-[#0e6d62] font-semibold rounded-lg hover:bg-gray-200 transition-colors duration-300 text-xs sm:text-sm md:text-base whitespace-nowrap"
-                    >
-                      예약하기
-                    </button>
-                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      router.push("/reservation");
+                    }}
+                    className={`w-full px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 bg-gradient-to-br ${party.color} text-white font-semibold rounded-lg hover:opacity-90 transition-opacity duration-300 text-xs sm:text-sm md:text-base whitespace-nowrap cursor-pointer`}
+                  >
+                    예약하기
+                  </button>
                 </div>
               </motion.div>
             ))}

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Banner from "../components/Banner";
+import Image from "next/image";
 
 export default function CustomerServicePage() {
 
@@ -161,6 +161,47 @@ export default function CustomerServicePage() {
                 <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                   A. {faq.answer}
                 </p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* 제휴 알림 섹션 */}
+        <section className="mt-12 sm:mt-16 md:mt-20">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 text-[#0e6d62]"
+          >
+            술개팅 X <span className="text-yellow-400">로멜로</span> 제휴
+          </motion.h2>
+
+          {/* 제휴 이미지 */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+            {[
+              "/술개팅 안전 업체/2.png",
+              "/술개팅 안전 업체/3.png",
+              "/술개팅 안전 업체/4.png",
+              "/술개팅 안전 업체/1.png",
+            ].map((imagePath, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="relative w-full aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
+              >
+                <Image
+                  src={imagePath}
+                  alt={`제휴 업체 ${index + 1}`}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
               </motion.div>
             ))}
           </div>

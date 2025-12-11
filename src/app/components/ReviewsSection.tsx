@@ -7,10 +7,25 @@ import ProgressBar from "./ProgressBar";
 import reviews from "../constants/reviews";
 import reviewStats from "../constants/reviewStats";
 
-const ReviewsSection = () => {
+interface ReviewsSectionProps {
+  title: string;
+  reviews?: typeof reviews;
+  reviewStats?: typeof reviewStats;
+  statsText?: string;
+}
+
+const ReviewsSection = ({ 
+  title,
+  reviews: customReviews, 
+  reviewStats: customReviewStats,
+  statsText = "✅ 2회 40명 참여"
+}: ReviewsSectionProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [visibleCount, setVisibleCount] = useState(10);
   const tooltipRef = useRef<HTMLDivElement>(null);
+
+  const displayReviews = customReviews || reviews;
+  const displayStats = customReviewStats || reviewStats;
 
   // 외부 클릭 감지
   useEffect(() => {
@@ -40,7 +55,7 @@ const ReviewsSection = () => {
       viewport={{ once: true }}
     >
       <div className="container mx-auto max-w-4xl">
-        <h2 className="text-4xl font-bold text-center mb-12 text-[#0e6d62]">파티 후기</h2>
+        <h2 className="text-4xl font-bold text-center mb-12 text-[#0e6d62]">{title}</h2>
         
         {/* 리뷰 통계 섹션 */}
         <motion.div
@@ -104,13 +119,12 @@ const ReviewsSection = () => {
                 </div>
               </div>
               <p className="text-gray-600 mb-4">
-                <span className="text-[#0e6d62] font-bold">✅ 105회</span> 83명
-                참여
+                <span className="text-[#0e6d62] font-bold">{statsText}</span>
               </p>
             </div>
           </motion.div>
           <div className="space-y-2">
-            {reviewStats.map((stat, index) => (
+            {displayStats.map((stat, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: -20 }}
@@ -140,7 +154,7 @@ const ReviewsSection = () => {
             실제 참가자 후기
           </motion.h3>
 
-          {reviews.slice(0, visibleCount).map((review, index) => (
+          {displayReviews.slice(0, visibleCount).map((review, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -160,7 +174,7 @@ const ReviewsSection = () => {
           ))}
 
           {/* 더보기 버튼 */}
-          {visibleCount < reviews.length && (
+          {visibleCount < displayReviews.length && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -171,7 +185,7 @@ const ReviewsSection = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setVisibleCount(reviews.length)}
+                onClick={() => setVisibleCount(displayReviews.length)}
                 className="bg-[#0e6d62] text-white px-8 py-3 rounded-full shadow-lg transition-all duration-300 ease-in-out transform font-semibold cursor-pointer"
               >
                 더보기

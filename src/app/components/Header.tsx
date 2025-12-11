@@ -45,7 +45,7 @@ const Header = () => {
             className="flex items-center gap-3 cursor-pointer"
             onClick={handleHomeClick}
           >
-            <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden bg-white flex-shrink-0">
+            <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden bg-white flex-shrink-0 flex items-center justify-center">
               <Image
                 src="/술개팅로고.jpg"
                 alt="술개팅 로고"
@@ -54,22 +54,37 @@ const Header = () => {
                 priority
               />
             </div>
-            <h1 className="text-xl md:text-2xl font-bold">
+            <h1 className="text-xl md:text-2xl font-bold leading-none">
               술개팅
             </h1>
           </div>
 
           {/* 데스크톱 네비게이션 */}
           <nav className="hidden md:flex items-center gap-6">
-            {pageMenuItems.map((item) => (
-              <button
-                key={item.path}
-                onClick={() => handlePageNavigation(item.path)}
-                className="text-sm font-medium hover:text-gray-200 transition-colors duration-200 cursor-pointer"
-              >
-                {item.label}
-              </button>
-            ))}
+            {pageMenuItems.map((item) => {
+              const isActive = pathname === item.path;
+              return (
+                <button
+                  key={item.path}
+                  onClick={() => handlePageNavigation(item.path)}
+                  className={`text-sm font-medium transition-all duration-200 cursor-pointer relative pb-1 ${
+                    isActive
+                      ? "text-white font-bold"
+                      : "text-white hover:text-gray-200"
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <motion.span
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="absolute bottom-0 left-0 h-0.5 bg-white rounded-full"
+                    ></motion.span>
+                  )}
+                </button>
+              );
+            })}
           </nav>
 
           {/* 모바일 햄버거 메뉴 버튼 */}
@@ -114,15 +129,30 @@ const Header = () => {
             style={{ backgroundColor: 'rgba(14, 109, 98, 0.4)' }}
           >
             <div className="flex flex-col gap-1 pt-2">
-              {pageMenuItems.map((item) => (
-                <button
-                  key={item.path}
-                  onClick={() => handlePageNavigation(item.path)}
-                  className="text-left text-sm font-medium py-1.5 px-2 hover:bg-[#0a5a50] rounded transition-colors duration-200 cursor-pointer"
-                >
-                  {item.label}
-                </button>
-              ))}
+              {pageMenuItems.map((item) => {
+                const isActive = pathname === item.path;
+                return (
+                  <button
+                    key={item.path}
+                    onClick={() => handlePageNavigation(item.path)}
+                    className={`text-left text-sm font-medium py-1.5 px-2 rounded transition-all duration-200 cursor-pointer relative ${
+                      isActive
+                        ? "text-white font-bold"
+                        : "text-white hover:bg-[#0a5a50]"
+                    }`}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <motion.span
+                        initial={{ height: 0 }}
+                        animate={{ height: "100%" }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="absolute left-0 bottom-0 top-0 w-1 bg-white rounded-r-full"
+                      ></motion.span>
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </motion.nav>
         )}

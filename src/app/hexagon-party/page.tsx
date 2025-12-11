@@ -104,6 +104,128 @@ export default function HexagonPartyPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* 파티 소개 섹션 */}
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-br from-blue-50 via-white to-emerald-50 relative overflow-hidden">
+        {/* 배경 장식 */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-400 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-5xl relative z-10">
+          {/* 첫 번째 문단 - 문제점 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-blue-100"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">💭</div>
+              <div className="flex-1">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                  이런 분들을 위해 준비했어요
+                </h2>
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="p-4 sm:p-5 bg-gradient-to-r from-red-50 to-red-100 rounded-xl border-2 border-red-300 shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl sm:text-3xl flex-shrink-0">❌</span>
+                      <p className="text-base sm:text-lg text-gray-800 leading-relaxed">
+                        <span className="font-bold text-red-600">보통의 파티:</span> 아무나 다와서 시간만 보내는 자리, 게임이 많아서 기빨렸던 분들
+                      </p>
+                    </div>
+                  </div>
+                  <div className="p-4 sm:p-5 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl border-2 border-orange-300 shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl sm:text-3xl flex-shrink-0">⚠️</span>
+                      <p className="text-base sm:text-lg text-gray-800 leading-relaxed">
+                        <span className="font-bold text-orange-600">로테이션 소개팅:</span> 1인당 볼 수 있는 시간은 짧고 매칭되지 않으면 기회가 없어서 힘든 분들
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 두 번째 문단 - 육각형 파티 특징 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-blue-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-emerald-100"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">✨</div>
+              <div className="flex-1">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                  육각형 파티는 다릅니다
+                </h2>
+                
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0">🔒</span>
+                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                      <span className="font-bold text-[#0e6d62]">외모/키(몸매)/재력/직업</span> 중 2개 이상 통과한 사람만 올 수 있는 승인제 파티
+                    </p>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0">💬</span>
+                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                      최소한의 아이스브레이킹 외 자연스러운 대화 위주 파티
+                    </p>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0">📱</span>
+                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                      인스타/연락처 교환 대놓고 유도
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 세 번째 문단 - 특별 혜택 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-blue-100"
+          >
+            <div className="flex items-start gap-4 mb-4">
+              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">🎁</div>
+              <div className="flex-1">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                  특별 혜택
+                </h2>
+                
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0">💕</span>
+                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                      육각형 파티는 잘 안되더라도 <span className="font-bold text-[#0e6d62]">여성분 술개팅 할인 이벤트</span> 및 <span className="font-bold text-[#0e6d62]">별도 소개팅</span> 해드립니다!
+                    </p>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0">💌</span>
+                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                      대문자 I를 위해 호스트가 다음날 직접 의사 전달도 해줘요!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
       
       {/* 육각형파티 소개 이미지 섹션 */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
@@ -144,7 +266,7 @@ export default function HexagonPartyPage() {
 
       <IntroSection />
       <CostSection />
-      <ReviewsSection />
+      <ReviewsSection title="육각형파티 후기" />
       <GallerySection />
 
       {/* 모달 */}

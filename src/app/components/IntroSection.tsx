@@ -92,8 +92,7 @@ const IntroSection = () => {
             </div>
             <div>
               <p className="font-semibold mb-1.5 sm:mb-2 text-[#0e6d62]">형식:</p>
-              <p>전체 자리 섞기 1회 + 자유 이동</p>
-              <p className="text-xs mt-1 text-gray-600">게임 없음 / 대화 중심</p>
+              <p>게임 없음 / 대화 중심</p>
             </div>
           </div>
         </div>
@@ -102,7 +101,6 @@ const IntroSection = () => {
         <div className="bg-gray-50 rounded-lg p-4 sm:p-5 md:p-6 mt-4 sm:mt-5 md:mt-6 border border-gray-200">
           <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-[#0e6d62]">진행방식</h3>
           <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-700">
-            <li>• 고정좌석X, 전체자리섞기 1회 + 자유이동</li>
             <li>• 진행자 최소 개입으로 자연스러운 대화 중심 파티</li>
             <li>• 인스타, 연락처 교환 타임 대놓고 드려요.</li>
             <li>• 교환이 어려운 대문자분들을 위한 혜택! 다음날 맘에 드는 1명을 호스트에게 말씀해주세요! 상대방에게 의사 물어봐 드릴게요.</li>

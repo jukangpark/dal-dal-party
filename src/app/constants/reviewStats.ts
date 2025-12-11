@@ -13,12 +13,12 @@ export const TAG_MAPPING = {
 };
 
 const reviewStats = [
-  { label: '✨ "비주얼이 너무 좋았어요"', value: 95, maxValue: 105 },
-  { label: '🎉 "분위기가 좋았어요"', value: 88, maxValue: 105 },
-  { label: '👥 "사람들이 좋았어요"', value: 85, maxValue: 105 },
-  { label: '🎯 "진행 방식이 좋았어요"', value: 82, maxValue: 105 },
-  { label: '🔒 "승인제라 안심했어요"', value: 78, maxValue: 105 },
-  { label: '💬 "자유롭게 대화할 수 있어요"', value: 75, maxValue: 105 },
+  { label: '✨ "비주얼이 너무 좋았어요"', value: 36, maxValue: 40 },
+  { label: '🎉 "분위기가 좋았어요"', value: 34, maxValue: 40 },
+  { label: '👥 "사람들이 좋았어요"', value: 32, maxValue: 40 },
+  { label: '🎯 "진행 방식이 좋았어요"', value: 30, maxValue: 40 },
+  { label: '🔒 "승인제라 안심했어요"', value: 28, maxValue: 40 },
+  { label: '💬 "자유롭게 대화할 수 있어요"', value: 26, maxValue: 40 },
 ];
 
 export default reviewStats;

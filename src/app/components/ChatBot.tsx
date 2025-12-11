@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { MessageCircle, X, Send } from "lucide-react";
+import { MessageCircle, X } from "lucide-react";
 
 interface ChatMessage {
   id: string;
@@ -24,6 +24,7 @@ const ChatBot = () => {
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messageIdCounter = useRef(1);
 
   // 메시지가 추가될 때 자동 스크롤
   const scrollToBottom = () => {
@@ -41,27 +42,32 @@ const ChatBot = () => {
     "환불 규정",
     "파티 종류",
     "예약 확인",
+    "1대1 대화/문의",
   ];
 
   const handleQuickQuestion = async (question: string) => {
     // 사용자 메시지 추가
+    const timestamp = new Date();
+    messageIdCounter.current += 1;
     const userMessage: ChatMessage = {
-      id: Date.now().toString(),
+      id: `msg-${messageIdCounter.current}`,
       message: question,
       sender: "user",
-      timestamp: new Date(),
+      timestamp: timestamp,
     };
     setMessages((prev) => [...prev, userMessage]);
     setIsTyping(true);
 
     // AI 응답 시뮬레이션 (실제로는 API 호출)
     setTimeout(() => {
+      const botTimestamp = new Date();
+      messageIdCounter.current += 1;
       const botResponse = generateBotResponse(question);
       const botMessage: ChatMessage = {
-        id: (Date.now() + 1).toString(),
+        id: `msg-${messageIdCounter.current}`,
         message: botResponse,
         sender: "bot",
-        timestamp: new Date(),
+        timestamp: botTimestamp,
       };
       setMessages((prev) => [...prev, botMessage]);
       setIsTyping(false);
@@ -78,7 +84,7 @@ const ChatBot = () => {
 
     // 참가비 안내
     else if (lowerMessage.includes("참가비") || lowerMessage.includes("비용") || lowerMessage.includes("가격")) {
-      return "참가비 안내입니다! 💰\n\n💁‍♂️ 남성: 39,000원\n💁‍♀️ 여성: 29,000원\n\n➕ 애프터 파티 참여: +10,000원\n(21:00~23:00, 2시간 연장)\n\n비주류 참여도 가능합니다!\n💁‍♂️ 남성: 40,000원\n💁‍♀️ 여성: 25,000원\n\n자세한 내용은 각 파티 페이지에서 확인해주세요!";
+      return "참가비 안내입니다! 💰\n\n🍷 술개팅\n💁‍♂️ 남성: 50,000원 (비음주 40,000원)\n💁‍♀️ 여성: 35,000원 (비음주 25,000원)\n\n✨ 육각형파티\n💁‍♂️ 남성: 39,000원\n💁‍♀️ 여성: 29,000원\n➕ 2시간 추가 시 각 +10,000원\n\n⭐ 별별파티\n💰 술값 n분의1 외 1인당 10,000원\n💳 술값은 선불\n\n자세한 내용은 각 파티 페이지에서 확인해주세요!";
     }
 
     // 환불 규정
@@ -88,12 +94,17 @@ const ChatBot = () => {
 
     // 파티 종류
     else if (lowerMessage.includes("파티 종류") || lowerMessage.includes("어떤 파티") || lowerMessage.includes("종류")) {
-      return "파티 종류 안내입니다! 🎉\n\n1️⃣ 술개팅\n• 신분과 직업이 검증된 프리미엄 소개팅\n• 1:1 릴레이 소개팅\n• 최대 8명의 이성과 만남\n\n2️⃣ 육각형 파티\n• 아무나 올 수 없는 승인제 파티\n• 외모·키·재력·직업 중 2가지 이상\n• 6각형 컨셉\n\n3️⃣ 별별파티\n• 다양한 테마의 특별한 파티\n• 대규모 파티 및 특별 이벤트\n\n홈페이지에서 각 파티를 자세히 확인해보세요!";
+      return "파티 종류 안내입니다! 🎉\n\n1️⃣ 술개팅\n• 신분과 직업이 검증된 프리미엄 소개팅\n• 1:1 릴레이 소개팅\n• 최대 6명의 이성과 만남\n\n2️⃣ 육각형 파티\n• 아무나 올 수 없는 승인제 파티\n• 외모·키·재력·직업 중 2가지 이상\n• 6각형 컨셉\n\n3️⃣ 별별파티\n• 다양한 테마의 특별한 파티\n• 대규모 파티 및 특별 이벤트\n\n홈페이지에서 각 파티를 자세히 확인해보세요!";
     }
 
     // 예약 확인
     else if (lowerMessage.includes("예약") || lowerMessage.includes("확인") || lowerMessage.includes("상태")) {
       return "예약 확인 안내입니다! 📅\n\n✅ 예약하기 페이지에서 달력을 확인하세요\n📱 신청 후 하루 이내 승인 여부 안내\n💬 승인되신 분께만 장소 및 입금 안내 개별 발송\n\n현재 모집중인 파티는 예약하기 페이지에서 확인하실 수 있습니다!";
+    }
+
+    // 1대1 대화/문의
+    else if (lowerMessage.includes("1대1") || lowerMessage.includes("1:1") || lowerMessage.includes("대화") || lowerMessage.includes("문의") || lowerMessage.includes("연락") || lowerMessage.includes("연락처") || lowerMessage.includes("카카오") || lowerMessage.includes("인스타")) {
+      return "1대1 대화 및 문의 안내입니다! 💬\n\n📱 카카오톡 ID: sulgaeting\n📸 인스타그램: sulgaeting\n\n언제든지 편하게 문의해주세요! 😊";
     }
 
     // 인사 관련

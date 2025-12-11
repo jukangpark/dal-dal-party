@@ -113,9 +113,9 @@ export default function StarPartyPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-purple-100"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">🎉</div>
-              <div className="flex-1">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
+              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">🎉</div>
+              <div className="flex-1 w-full sm:w-auto">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 text-[#0e6d62]">
                   소개팅은 너무 부담스럽다면? 가볍게 즐기는 별별파티!
                 </h2>
@@ -194,9 +194,9 @@ export default function StarPartyPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-purple-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-emerald-100"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">🔄</div>
-              <div className="flex-1">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
+              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">🔄</div>
+              <div className="flex-1 w-full sm:w-auto">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
                   자리도 자유롭게 섞고 번호 교환도 자유롭게!
                 </h2>
@@ -232,9 +232,9 @@ export default function StarPartyPage() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-purple-100"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">✅</div>
-              <div className="flex-1">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
+              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">✅</div>
+              <div className="flex-1 w-full sm:w-auto">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
                   하나라도 해당된다면? 무조건 참여하세요!
                 </h2>
@@ -294,9 +294,9 @@ export default function StarPartyPage() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-purple-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-emerald-100"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">⭐</div>
-              <div className="flex-1">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
+              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">⭐</div>
+              <div className="flex-1 w-full sm:w-auto">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
                   소맥파티 Point 정리!
                 </h2>
@@ -344,9 +344,9 @@ export default function StarPartyPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-purple-100"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">🍻</div>
-              <div className="flex-1">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
+              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">🍻</div>
+              <div className="flex-1 w-full sm:w-auto">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
                   2차도 자유롭게! 개별 약속도 OK!
                 </h2>
@@ -367,9 +367,9 @@ export default function StarPartyPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-purple-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-emerald-100"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">🌟</div>
-              <div className="flex-1">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
+              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">🌟</div>
+              <div className="flex-1 w-full sm:w-auto">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
                   광주/전남/전북에서만 가능한 차별화된 특별한 파티!
                 </h2>
@@ -396,9 +396,9 @@ export default function StarPartyPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-purple-100"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">💳</div>
-              <div className="flex-1">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
+              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">💳</div>
+              <div className="flex-1 w-full sm:w-auto">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
                   참가비는 어떻게 되나요?
                 </h2>

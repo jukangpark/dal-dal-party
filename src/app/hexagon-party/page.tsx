@@ -122,9 +122,9 @@ export default function HexagonPartyPage() {
             transition={{ duration: 0.8 }}
             className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-blue-100"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">💭</div>
-              <div className="flex-1">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
+              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">💭</div>
+              <div className="flex-1 w-full sm:w-auto">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
                   이런 분들을 위해 준비했어요
                 </h2>
@@ -158,9 +158,9 @@ export default function HexagonPartyPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-blue-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-emerald-100"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">✨</div>
-              <div className="flex-1">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
+              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">✨</div>
+              <div className="flex-1 w-full sm:w-auto">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
                   육각형 파티는 다릅니다
                 </h2>
@@ -199,9 +199,9 @@ export default function HexagonPartyPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-blue-100"
           >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="text-4xl sm:text-5xl flex-shrink-0 pt-1">🎁</div>
-              <div className="flex-1">
+            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
+              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">🎁</div>
+              <div className="flex-1 w-full sm:w-auto">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
                   특별 혜택
                 </h2>

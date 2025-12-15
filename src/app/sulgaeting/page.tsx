@@ -208,6 +208,67 @@ export default function SulgaetingPage() {
             </div>
           </motion.div>
 
+          {/* 차별점 카드 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="bg-gradient-to-br from-blue-500/10 via-emerald-500/10 to-[#0e6d62]/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border-2 border-emerald-300/50"
+          >
+            <div className="text-center mb-4 sm:mb-6">
+              <div className="inline-flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-4">
+                <span className="text-3xl sm:text-4xl md:text-5xl">⭐</span>
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0e6d62]">
+                  술개팅만의 특별한 차별점!
+                </h2>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+              {/* 다른 업체 vs 술개팅 - 표 선택 */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 border border-emerald-200">
+                <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
+                  <span className="text-2xl sm:text-3xl md:text-4xl flex-shrink-0">📝</span>
+                  <div className="flex-1">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62]">표 선택의 자유</h3>
+                    <div className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
+                      <div className="flex items-start gap-1.5 sm:gap-2">
+                        <span className="text-red-500 font-semibold flex-shrink-0 text-base sm:text-lg">❌</span>
+                        <p className="text-gray-700">다른 업체: 1인당 <span className="font-bold">2표만</span> 선택 가능</p>
+                      </div>
+                      <div className="flex items-start gap-1.5 sm:gap-2">
+                        <span className="text-emerald-600 font-semibold flex-shrink-0 text-base sm:text-lg">✅</span>
+                        <p className="text-gray-700 font-semibold">술개팅: <span className="font-bold text-[#0e6d62]">표 전부 다</span> 선택 가능!</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 다른 업체 vs 술개팅 - 매칭 방식 */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 border border-emerald-200">
+                <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
+                  <span className="text-2xl sm:text-3xl md:text-4xl flex-shrink-0">💕</span>
+                  <div className="flex-1">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62]">무료 매칭 서비스</h3>
+                    <div className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
+                      <div className="flex items-start gap-1.5 sm:gap-2">
+                        <span className="text-red-500 font-semibold flex-shrink-0 text-base sm:text-lg">❌</span>
+                        <p className="text-gray-700">다른 업체: 엇갈리면 <span className="font-bold">추가금 내고</span> 매칭</p>
+                      </div>
+                      <div className="flex items-start gap-1.5 sm:gap-2">
+                        <span className="text-emerald-600 font-semibold flex-shrink-0 text-base sm:text-lg">✅</span>
+                        <p className="text-gray-700 font-semibold">술개팅: <span className="font-bold text-[#0e6d62]">무료로</span> 상대방 의사 물어보고<br className="hidden sm:block" />
+                        <span className="hidden sm:inline"> </span>최대한 되는 방향으로 진행!</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           {/* 두 번째 문단 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

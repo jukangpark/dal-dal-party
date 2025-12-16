@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 
@@ -825,5 +825,19 @@ const ApplyPage = () => {
   );
 };
 
-export default ApplyPage;
+const ApplyPageWrapper = () => {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-500">로딩 중...</p>
+        </div>
+      </div>
+    }>
+      <ApplyPage />
+    </Suspense>
+  );
+};
+
+export default ApplyPageWrapper;
 

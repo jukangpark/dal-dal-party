@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Header from "../components/Header";
+import { useSearchParams } from "next/navigation";
 
 const MBTI_OPTIONS = [
   "INTJ", "INTP", "ENTJ", "ENTP",
@@ -13,6 +13,9 @@ const MBTI_OPTIONS = [
 ];
 
 const ApplyPage = () => {
+  const searchParams = useSearchParams();
+  const dateFromQuery = searchParams.get('date') || '';
+  
   const [formData, setFormData] = useState({
     // 개인정보 동의
     privacyAgreement: false,
@@ -51,6 +54,8 @@ const ApplyPage = () => {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [photoPreviews, setPhotoPreviews] = useState<string[]>([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -87,6 +92,19 @@ const ApplyPage = () => {
         ...prev,
         photos: files,
       }));
+      // 미리보기 생성
+      const previewPromises = files.map(file => {
+        return new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            resolve(reader.result as string);
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+      Promise.all(previewPromises).then(previewUrls => {
+        setPhotoPreviews(previewUrls);
+      });
     }
   };
 
@@ -106,7 +124,9 @@ const ApplyPage = () => {
     }
 
     if (!formData.birthYear) {
-      newErrors.birthYear = "생년을 입력해주세요.";
+      newErrors.birthYear = "생년월일을 입력해주세요.";
+    } else if (!/^\d{6}$/.test(formData.birthYear)) {
+      newErrors.birthYear = "생년월일을 6자리 숫자로 입력해주세요. (예: 960209)";
     }
 
     if (!formData.job) {
@@ -162,13 +182,102 @@ const ApplyPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Supabase에 이미지 업로드하는 함수 (서버 사이드 API Route 사용)
+  const uploadToSupabase = async (file: File, path: string, applicantId: string): Promise<string | null> => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('path', path);
+      formData.append('partyType', 'hexagon-party'); // 파티 타입 전달
+      formData.append('applicantId', applicantId); // 신청자 고유 ID 전달
+      
+      // Next.js API Route를 통해 서버 사이드에서 Service Key 사용
+      const response = await fetch('/api/upload-image', {
+        method: 'POST',
+        body: formData
+      });
+      
+      const result = await response.json();
+      
+      if (result.success && result.url) {
+        return result.url;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (validateForm()) {
-      // TODO: 실제 제출 로직 구현
-      console.log("Form submitted:", formData);
-      alert("신청이 완료되었습니다! 운영진 심사 후 결과를 안내드리겠습니다.");
+    if (validateForm() && !isSubmitting) {
+      setIsSubmitting(true);
+      
+      try {
+        // ID 생성
+        const id = Date.now().toString();
+        
+        // 1단계: 이미지를 Supabase에 업로드하고 URL 가져오기
+        let photoUrls: string[] = [];
+        
+        // 사진 업로드
+        if (formData.photos.length > 0) {
+          const uploadPromises = formData.photos.map(async (photo, index) => {
+            const path = `${id}_photo_${index + 1}_${photo.name}`;
+            return await uploadToSupabase(photo, path, id);
+          });
+          const urls = await Promise.all(uploadPromises);
+          photoUrls = urls.filter((url): url is string => url !== null);
+        }
+        
+        // 매력 포인트 배열로 변환
+        const charmPointsArray = Object.entries(formData.charmPoints)
+          .filter(([, value]) => value)
+          .map(([key]) => key);
+        
+        // 2단계: API로 데이터 전송 (URL만 전송)
+        const response = await fetch('/api/applications', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            partyType: 'hexagon-party',
+            date: dateFromQuery,
+            name: formData.name,
+            gender: formData.gender,
+            birthYear: formData.birthYear,
+            job: formData.job,
+            residence: formData.residence,
+            contact: formData.contact,
+            mbti: formData.mbti,
+            lookalike: formData.lookalike,
+            charmPoints: charmPointsArray.join(', '),
+            // 이미지 URL만 전송
+            photoUrls: photoUrls,
+            visitRoute: formData.visitRoute,
+            visitRouteOther: formData.visitRouteOther,
+            photoAgreement: formData.photoAgreement,
+            rotationAgreement: formData.rotationAgreement,
+            refundAgreement: formData.refundAgreement,
+          }),
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          alert("신청이 완료되었습니다! 운영진 심사 후 결과를 안내드리겠습니다.");
+          window.location.reload();
+        } else {
+          alert(`신청 중 오류가 발생했습니다: ${result.error || '알 수 없는 오류'}`);
+          setIsSubmitting(false);
+        }
+      } catch (error) {
+        alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -313,16 +422,25 @@ const ApplyPage = () => {
               </div>
 
               <div>
-                <label className="block mb-1.5 md:mb-2 text-sm md:text-base font-semibold text-[#0e6d62]">📍 생년 (예: 1995)*</label>
+                <label className="block mb-1.5 md:mb-2 text-sm md:text-base font-semibold text-[#0e6d62]">📍 생년월일 (예: 960209)*</label>
                 <input
-                  type="number"
+                  type="text"
                   name="birthYear"
                   value={formData.birthYear}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    // 숫자만 입력 가능하도록 제한
+                    const value = e.target.value.replace(/\D/g, '');
+                    // 최대 6자리까지만 입력
+                    if (value.length <= 6) {
+                      setFormData(prev => ({
+                        ...prev,
+                        birthYear: value,
+                      }));
+                    }
+                  }}
                   className="w-full px-3 md:px-4 py-2 rounded text-sm md:text-base text-gray-900 border border-gray-300"
-                  placeholder="예: 1995"
-                  min="1950"
-                  max="2010"
+                  placeholder="예: 960209"
+                  maxLength={6}
                 />
                 {errors.birthYear && <p className="text-red-500 text-sm mt-1">{errors.birthYear}</p>}
               </div>
@@ -507,9 +625,22 @@ const ApplyPage = () => {
                 className="w-full px-3 md:px-4 py-2 rounded text-sm md:text-base text-gray-900 border border-gray-300"
               />
               {formData.photos.length > 0 && (
-                <p className="text-sm text-gray-600 mt-2">
-                  선택된 파일: {formData.photos.length}개
-                </p>
+                <div className="mt-2">
+                  <p className="text-sm text-gray-600 mb-2">
+                    선택된 파일: {formData.photos.length}개
+                  </p>
+                  <div className="grid grid-cols-3 gap-2">
+                    {photoPreviews.map((preview, index) => (
+                      <div key={index} className="relative w-full aspect-square rounded-lg overflow-hidden border border-gray-300">
+                        <img
+                          src={preview}
+                          alt={`본인 사진 ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               )}
               {errors.photos && <p className="text-red-500 text-sm mt-1">{errors.photos}</p>}
             </div>
@@ -665,11 +796,16 @@ const ApplyPage = () => {
             <div className="flex justify-center">
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-[#0e6d62] text-white font-bold py-3 md:py-4 px-8 md:px-12 rounded-lg hover:bg-[#0a5a50] transition-colors text-base md:text-lg cursor-pointer"
+                disabled={isSubmitting}
+                whileHover={!isSubmitting ? { scale: 1.05 } : {}}
+                whileTap={!isSubmitting ? { scale: 0.95 } : {}}
+                className={`bg-[#0e6d62] text-white font-bold py-3 md:py-4 px-8 md:px-12 rounded-lg transition-colors text-base md:text-lg ${
+                  isSubmitting 
+                    ? 'opacity-50 cursor-not-allowed' 
+                    : 'hover:bg-[#0a5a50] cursor-pointer'
+                }`}
               >
-                제출
+                {isSubmitting ? '제출 중...' : '제출'}
               </motion.button>
             </div>
           </form>

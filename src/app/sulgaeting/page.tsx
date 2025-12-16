@@ -24,7 +24,7 @@ export default function SulgaetingPage() {
   });
 
   // 1부터 26까지 이미지 경로 생성 (실제 커플 후기)
-  const coupleImages = Array.from({ length: 26 }, (_, i) => {
+  const coupleImages = Array.from({ length: 29 }, (_, i) => {
     const num = i + 1;
     return `/술개팅 실제커플 후기/${num}.png`;
   });

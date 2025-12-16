@@ -21,7 +21,17 @@ const Banner = ({ images = [], interval = 5000, type }: BannerProps) => {
     "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&h=600&fit=crop",
   ];
 
-  const bannerImages = images.length > 0 ? images : defaultImages;
+  // 파티 타입별 배너 이미지
+  const sulgaetingImage = "/배너/술개팅배너.jpg";
+  const hexagonPartyImage = "/배너/육각형파티배너.jpg";
+  
+  const bannerImages = images.length > 0 
+    ? images 
+    : type === "술개팅"
+    ? [sulgaetingImage]
+    : type === "육각형 파티"
+    ? [hexagonPartyImage]
+    : defaultImages;
 
   // 슬라이드별 텍스트 내용
   const slideContents = [
@@ -112,7 +122,7 @@ const Banner = ({ images = [], interval = 5000, type }: BannerProps) => {
           <div
             className="w-full h-full bg-cover bg-center"
             style={{
-              backgroundImage: `url(${bannerImages[displayIndex]})`,
+              backgroundImage: `url(${(type === "술개팅" || type === "육각형 파티") ? bannerImages[0] : bannerImages[displayIndex]})`,
             }}
           >
             {/* 어두운 오버레이 */}

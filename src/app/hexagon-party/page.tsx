@@ -133,7 +133,7 @@ export default function HexagonPartyPage() {
                     <div className="flex items-center gap-3">
                       <span className="text-2xl sm:text-3xl flex-shrink-0">❌</span>
                       <p className="text-base sm:text-lg text-gray-800 leading-relaxed">
-                        <span className="font-bold text-red-600">보통의 파티:</span> 아무나 다와서 시간만 보내는 자리, 게임이 많아서 기빨렸던 분들
+                        <span className="font-bold text-red-600">보통의 파티:</span> 누구나 올 수 있지만 맘에 드는 사람은 없어서 시간만 보내는 파티, 게임 위주 진행으로 기 빨렸던 경험 있으신 분들
                       </p>
                     </div>
                   </div>
@@ -141,10 +141,113 @@ export default function HexagonPartyPage() {
                     <div className="flex items-center gap-3">
                       <span className="text-2xl sm:text-3xl flex-shrink-0">⚠️</span>
                       <p className="text-base sm:text-lg text-gray-800 leading-relaxed">
-                        <span className="font-bold text-orange-600">로테이션 소개팅:</span> 1인당 볼 수 있는 시간은 짧고 매칭되지 않으면 기회가 없어서 힘든 분들
+                        <span className="font-bold text-orange-600">로테이션 소개팅:</span> 1인당 대화 시간은 너무 짧고 매칭이 안된다면 어떤 기회도 없는 자리에 아쉬웠던 분들
                       </p>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 비용 어필 카드 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border-2 border-purple-200"
+          >
+            <div className="text-center mb-6 sm:mb-8">
+              <div className="inline-flex items-center justify-center gap-2 sm:gap-3 mb-4">
+                <span className="text-4xl sm:text-5xl">💰</span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-purple-600">
+                  광주에서 가장 낮은 비용
+                </h2>
+              </div>
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-700 font-semibold leading-relaxed mb-4 sm:mb-6">
+                육각형 파티에서 새로운 인연을 만나보세요!
+              </p>
+              <div className="mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6">
+                <div className="bg-purple-50 rounded-xl sm:rounded-2xl px-5 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 border-3 border-purple-400 shadow-lg">
+                  <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-1 sm:mb-2">남자</p>
+                  <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-purple-600 leading-none">
+                    39,000원
+                  </p>
+                </div>
+                <div className="bg-purple-50 rounded-xl sm:rounded-2xl px-5 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 border-3 border-purple-400 shadow-lg">
+                  <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-1 sm:mb-2">여자</p>
+                  <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-purple-600 leading-none">
+                    29,000원
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 font-medium">
+                (+1만원으로 애프터 파티 2시간 참여 가능)
+              </p>
+            </div>
+
+            {/* 안내사항 */}
+            <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t-2 border-purple-100">
+              <div className="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-4 sm:p-5 mb-6">
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  <strong className="text-purple-700">안내사항:</strong> 신청 후 운영진 심사 후 승인되신분께만 장소 및 입금 안내가 개별 발송됩니다. 
+                  신청 후 하루 이내 결과 안내 예정입니다.
+                </p>
+              </div>
+
+              {/* 환불 규정 및 특이사항 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                {/* 환불규정 */}
+                <div className="bg-gray-50 rounded-lg p-4 sm:p-5 md:p-6 border border-gray-200">
+                  <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-purple-600 flex items-center gap-2">
+                  <span>💜</span>
+                    <span>환불규정</span>
+                  </h3>
+                  <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-600 font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>노쇼시 어떠한 경우에도 환불 불가</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-600 font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>취소 및 환불은 7일 전까지 가능</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-600 font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>참가일 5일전 이상 50% 공제 후 환불</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* 특이사항 */}
+                <div className="bg-gray-50 rounded-lg p-4 sm:p-5 md:p-6 border border-gray-200">
+                  <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-purple-600 flex items-center gap-2">
+                    <span>💜</span>
+                    <span>특이사항</span>
+                  </h3>
+                  <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-600 font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>호스트의 확정 공지를 받은 분들에 한해서만 참가 가능</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-600 font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>참가 인원 미달 시 일정이 변경 가능</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-600 font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>특별한 경우 세부적인 일정 및 장소 등은 변경 가능</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-600 font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>진행시간에 늦으면 당일 참여가 불가능</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-purple-600 font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>모임 진행 중 본인 부주의로 인한 사고는 책임지지 않습니다.</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -176,14 +279,14 @@ export default function HexagonPartyPage() {
                   <div className="flex items-center gap-3">
                     <span className="text-2xl sm:text-3xl flex-shrink-0">💬</span>
                     <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                      최소한의 아이스브레이킹 외 자연스러운 대화 위주 파티
+                      간단한 아이스 브레이킹, 자연스러운 연락처 교환 타이밍, 자연스로운 대화 위주 파티
                     </p>
                   </div>
                   
                   <div className="flex items-center gap-3">
                     <span className="text-2xl sm:text-3xl flex-shrink-0">📱</span>
                     <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                      인스타/연락처 교환 대놓고 유도
+                      인스타/연락처 교환 타이밍 자연스럽게 드려요!
                     </p>
                   </div>
                 </div>
@@ -210,14 +313,15 @@ export default function HexagonPartyPage() {
                   <div className="flex items-start gap-3">
                     <span className="text-2xl sm:text-3xl flex-shrink-0">💕</span>
                     <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                      육각형 파티는 잘 안되더라도 <span className="font-bold text-[#0e6d62]">여성분 술개팅 할인 이벤트</span> 및 <span className="font-bold text-[#0e6d62]">별도 소개팅</span> 해드립니다!
+                    육각형 파티 참여하신 분들은 <span className="font-bold text-[#0e6d62]">술개팅 할인 이벤트</span> 및 <span className="font-bold text-[#0e6d62]">별도 1:1 소개팅</span> 해드려요! (여성분 한정)
+                    
                     </p>
                   </div>
                   
                   <div className="flex items-start gap-3">
                     <span className="text-2xl sm:text-3xl flex-shrink-0">💌</span>
                     <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                      대문자 I를 위해 호스트가 다음날 직접 의사 전달도 해줘요!
+                    연락처 교환이 어려운 대문자 <b>I</b> 를 위한 혜택! <br/>다음날 마음에 드는 <span className="font-bold text-[#0e6d62]">1명을 호스트에게 연락주면 상대방에게 의사 물어봐드려요!</span>
                     </p>
                   </div>
                 </div>
@@ -227,45 +331,6 @@ export default function HexagonPartyPage() {
         </div>
       </section>
       
-      {/* 육각형파티 소개 이미지 섹션 */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 text-[#0e6d62]"
-          >
-            육각형파티 소개
-          </motion.h2>
-
-          {/* 이미지 갤러리 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-            {introImages.map((imagePath, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.02 }}
-                className="relative aspect-[9/16] rounded-lg overflow-hidden cursor-pointer group shadow-md hover:shadow-xl transition-shadow duration-300"
-                onClick={() => openModal(index)}
-              >
-                <Image
-                  src={imagePath}
-                  alt={`육각형파티 소개 ${index + 1}`}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <IntroSection />
-      <CostSection />
       <ReviewsSection title="육각형파티 후기" />
       <GallerySection />
 

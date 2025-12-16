@@ -111,15 +111,16 @@ export default function StarPartyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-purple-100"
+            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border border-purple-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">🎉</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">🎉</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 text-[#0e6d62]">
-                  소개팅은 너무 부담스럽다면? 가볍게 즐기는 별별파티!
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-[#0e6d62] leading-snug sm:leading-tight">
+                  다양한 테마와 이벤트가 있는 별별파티!
                 </h2>
-                <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
+                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-3 sm:mb-4 text-gray-700 leading-snug">친목, 연애 다 OK, 술개팅 참여자들을 위한 소셜링 파티</h3>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
                   소개팅보다 부담 없고, 감주나 헌팅포차보다 자유롭게!
                   <br className="hidden sm:block" />
                   나이, 이름, 직업만 기입하면 누구나 참석 가능!
@@ -136,21 +137,21 @@ export default function StarPartyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="bg-gradient-to-r from-[#0e6d62] via-emerald-600 to-[#0e6d62] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl mb-6 sm:mb-8 border-2 border-emerald-400/50"
+            className="bg-gradient-to-r from-[#0e6d62] via-emerald-600 to-[#0e6d62] rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-2xl mb-4 sm:mb-6 md:mb-8 border-2 border-emerald-400/50"
           >
             <div className="text-center">
-              <div className="inline-flex items-center justify-center gap-2 sm:gap-3 mb-4">
+              <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-5">
                 <span className="text-4xl sm:text-5xl">💰</span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight">
                   단돈 만원 한장으로 즐기는 자유롭고 즐거운 파티!
                 </h2>
               </div>
-              <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-semibold leading-relaxed mb-4">
-                참가비는 단돈 <span className="text-yellow-300 font-bold">만 원!</span> (술값 제외) 자유로운 분위기를 타고, 편하게 즐기세요!
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-semibold leading-relaxed mb-3 sm:mb-4">
+                참가비는 단돈 <span className="text-yellow-300 font-bold">만 원!</span> (술값 제외)
               </p>
-              <div className="space-y-2 text-white/90">
-                <p className="text-base sm:text-lg">인원 제한 없이 누구나 부담없이 참석 가능!</p>
-                <p className="text-sm sm:text-base text-white/80">* 약 2시간 동안 진행합니다.</p>
+              <div className="space-y-2 sm:space-y-2.5 text-white/90">
+                <p className="text-sm sm:text-base md:text-lg">인원 제한 없이 누구나 부담없이 참석 가능!</p>
+                <p className="text-xs sm:text-sm md:text-base text-white/80">* 약 2시간 동안 진행합니다.</p>
               </div>
             </div>
           </motion.div>
@@ -161,26 +162,26 @@ export default function StarPartyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl mb-6 sm:mb-8 border-2 border-blue-400/50"
+            className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-2xl mb-4 sm:mb-6 md:mb-8 border-2 border-blue-400/50"
           >
             <div className="text-center">
-              <div className="inline-flex items-center justify-center gap-2 sm:gap-3 mb-4">
+              <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-5">
                 <span className="text-4xl sm:text-5xl">🍻</span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight">
                   간단한 안주, 술무제한!
                 </h2>
               </div>
-              <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-semibold leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-semibold leading-relaxed">
                 편하게 즐기실 수 있도록<br className="sm:hidden" />
                 <span className="hidden sm:inline"> </span>
                 <span className="text-yellow-300 font-bold">간단한 안주와 무제한 술</span>을 제공합니다!
               </p>
-              <div className="mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-white">
-                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 sm:px-6 py-2 sm:py-3 border border-white/30">
-                  <p className="text-sm sm:text-base font-semibold">🍺 소주, 맥주 무제한</p>
+              <div className="mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 md:gap-4 text-white">
+                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 border border-white/30">
+                  <p className="text-xs sm:text-sm md:text-base font-semibold">🍺 소주, 맥주 무제한</p>
                 </div>
-                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 sm:px-6 py-2 sm:py-3 border border-white/30">
-                  <p className="text-sm sm:text-base font-semibold">🍽️ 간단한 안주 제공</p>
+                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 border border-white/30">
+                  <p className="text-xs sm:text-sm md:text-base font-semibold">🍽️ 간단한 안주 제공</p>
                 </div>
               </div>
             </div>
@@ -192,30 +193,30 @@ export default function StarPartyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-purple-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-emerald-100"
+            className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-purple-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border border-emerald-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">🔄</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">🔄</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-[#0e6d62] leading-snug sm:leading-tight">
                   자리도 자유롭게 섞고 번호 교환도 자유롭게!
                 </h2>
                 <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl sm:text-3xl flex-shrink-0">✨</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                      소맥파티에서는 자리가 자유롭게 섞이고, 번호 교환도 눈치 보지 않고 가능!
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0 mt-0.5">✨</span>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
+                      별별파티에서는 자리가 자유롭게 섞이고, 번호 교환도 눈치 보지 않고 가능!
                     </p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl sm:text-3xl flex-shrink-0">🎯</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0 mt-0.5">🎯</span>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       분위기를 보고 진행자가 자리를 섞어주는 센스까지!
                     </p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl sm:text-3xl flex-shrink-0">😊</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0 mt-0.5">😊</span>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       여러분은 편하게 즐기기만 하세요!
                     </p>
                   </div>
@@ -230,54 +231,47 @@ export default function StarPartyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-purple-100"
+            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border border-purple-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">✅</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">✅</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-[#0e6d62] leading-snug sm:leading-tight">
                   하나라도 해당된다면? 무조건 참여하세요!
                 </h2>
-                <div className="space-y-2 sm:space-y-3">
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                <div className="space-y-2.5 sm:space-y-3">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       회사와 집만 반복되는 지루한 워커홀릭
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       맘에 쏙드는 괜찮은 이성을 만나고 싶은 분
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       격식만 갖춰진 와인모임 등에 실망하신 분
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       자연스러운 자리에서 이성을 만나고 싶은 분
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       다양한 직업군의 사람들과 대화하고 싶은 분
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       와인, 양주보다는 소주, 맥주가 편안하고 좋은 분
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       타 모임에서 생각보다 즐겁지 않아서 실망하신 분
                     </p>
                   </div>
@@ -286,48 +280,43 @@ export default function StarPartyPage() {
             </div>
           </motion.div>
 
-          {/* 다섯 번째 문단 - 소맥파티 Point 정리 */}
+          {/* 다섯 번째 문단 - 별별파티 Point 정리 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-purple-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-emerald-100"
+            className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-purple-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border border-emerald-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">⭐</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">⭐</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
-                  소맥파티 Point 정리!
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-[#0e6d62] leading-snug sm:leading-tight">
+                  별별파티 Point 정리!
                 </h2>
-                <div className="space-y-2 sm:space-y-3">
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                <div className="space-y-2.5 sm:space-y-3">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       참가비 만 원으로 2시간 동안 부담 없이 즐기기
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       자유롭게 자리를 섞고, 번호 교환도 눈치 볼 필요 X
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       성비 맞추고 기본 정보 확인으로 안심할 수 있는 파티
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       2차는 원할 때 자유롭게! N분의 1로 부담 없는 즐거움
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">✓</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       소개팅보다 부담 없고, 감주•헌팅보다 자유로운 분위기
                     </p>
                   </div>
@@ -342,15 +331,15 @@ export default function StarPartyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-purple-100"
+            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border border-purple-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">🍻</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">🍻</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-[#0e6d62] leading-snug sm:leading-tight">
                   2차도 자유롭게! 개별 약속도 OK!
                 </h2>
-                <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
                   2차는 원한다면 참가비는 N분의 1로 진행하며, 맘에 드는 상대가 있다면 자유롭게 떠날 수 있습니다!
                   <br className="hidden sm:block" />
                   <span className="font-semibold text-[#0e6d62]">장소는 파티룸 또는 상무지구 인근 술집!</span>
@@ -365,26 +354,92 @@ export default function StarPartyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-purple-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-emerald-100"
+            className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-purple-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border border-emerald-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">🌟</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">🌟</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
-                  광주/전남/전북에서만 가능한 차별화된 특별한 파티!
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-[#0e6d62] leading-snug sm:leading-tight">
+                  광주/전남/전북에서만 가능한 차별화된 별별 파티!
                 </h2>
-                <div className="space-y-3 sm:space-y-4">
-                  <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                    광주에는 헌팅포차나 클럽은 많지만, 이렇게 자유롭고 부담 없는 파티는 소맥파티가 유일합니다!
+                <div className="space-y-3 sm:space-y-4 mb-3 sm:mb-4">
+                  <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
+                    광주에는 헌팅포차나 클럽은 많지만, 이렇게 자유롭고 부담 없는 파티는 별별파티가 유일합니다! <br/>
+                    자유로운 합석이 가능하고, 나이와 직업이 검증되니 안심하고 즐기세요!
                   </p>
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl sm:text-3xl flex-shrink-0">🔒</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                      자유로운 합석이 가능하고, 나이와 직업이 검증되니 안심하고 즐기세요!
-                    </p>
-                  </div>
                 </div>
               </div>
+            </div>
+
+            {/* 3가지 특징 카드 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+              {/* 다양한 테마 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 border-2 border-blue-200 shadow-md hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="flex items-start gap-2.5 sm:gap-3 mb-3">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#0e6d62] leading-tight">다양한 테마</h3>
+                </div>
+                <ul className="space-y-2 sm:space-y-2.5 text-sm sm:text-base text-gray-700 leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <span>자영업자들을 위한 파티</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span>헬스인들끼리 만나는 파티</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span>광주에 사는 타지인 모임</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span>여러 직업군이 모이는 무한 게스트 친목 파티 등</span>
+                  </li>
+                </ul>
+              </motion.div>
+
+              {/* 대규모 파티 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 border-2 border-emerald-200 shadow-md hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="flex items-start gap-2.5 sm:gap-3 mb-3">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#0e6d62] leading-tight">대규모 파티</h3>
+                </div>
+                <div className="mt-3 sm:mt-4">
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0e6d62] mb-2">최대 120명</p>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">참여 가능한 대규모 파티</p>
+                </div>
+              </motion.div>
+
+              {/* 특별 이벤트 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 border-2 border-purple-200 shadow-md hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="flex items-start gap-2.5 sm:gap-3 mb-3">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#0e6d62] leading-tight">특별 이벤트</h3>
+                </div>
+                <ul className="space-y-2 sm:space-y-2.5 text-sm sm:text-base text-gray-700 leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <span>할로윈, 연말 파티</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span>스키장, 꽃놀이</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span>펜션 등 시즌 이벤트</span>
+                  </li>
+                </ul>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -394,33 +449,33 @@ export default function StarPartyPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-purple-100"
+            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl border border-purple-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">💳</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">💳</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-[#0e6d62] leading-snug sm:leading-tight">
                   참가비는 어떻게 되나요?
                 </h2>
-                <div className="space-y-4 sm:space-y-5">
-                  <div className="p-4 sm:p-5 bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-xl border border-emerald-200">
-                    <p className="text-base sm:text-lg font-semibold text-[#0e6d62] mb-2">
+                <div className="space-y-3 sm:space-y-4 md:space-y-5">
+                  <div className="p-3 sm:p-4 md:p-5 bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-xl border border-emerald-200">
+                    <p className="text-sm sm:text-base md:text-lg font-semibold text-[#0e6d62] mb-1.5 sm:mb-2">
                       술개팅 참여자
                     </p>
-                    <p className="text-base sm:text-lg text-gray-700">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       술값 N분의 1, 참여비 무료
                     </p>
                   </div>
-                  <div className="p-4 sm:p-5 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl border border-purple-200">
-                    <p className="text-base sm:text-lg font-semibold text-[#0e6d62] mb-2">
+                  <div className="p-3 sm:p-4 md:p-5 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl border border-purple-200">
+                    <p className="text-sm sm:text-base md:text-lg font-semibold text-[#0e6d62] mb-1.5 sm:mb-2">
                       그 외
                     </p>
-                    <p className="text-base sm:text-lg text-gray-700">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       술값 N분의 1, 참여비 2만원
                     </p>
                   </div>
-                  <div className="mt-4 p-4 sm:p-5 bg-yellow-50 rounded-xl border border-yellow-200">
-                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                  <div className="mt-3 sm:mt-4 p-3 sm:p-4 md:p-5 bg-yellow-50 rounded-xl border border-yellow-200">
+                    <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
                       <span className="font-semibold text-[#0e6d62]">술개팅 참여하지 않으셨던 분들은</span>
                       <br />
                       네이버 폼 필수로 작성하셔야 참여 가능합니다!
@@ -431,44 +486,7 @@ export default function StarPartyPage() {
             </div>
           </motion.div>
         </div>
-      </section>
-      
-      {/* 별별파티 소개 이미지 섹션 */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
-        <div className="container mx-auto max-w-7xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 text-[#0e6d62]"
-          >
-            별별파티 소개
-          </motion.h2>
-
-          {/* 이미지 갤러리 */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
-            {introImages.map((imagePath, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.02 }}
-                className="relative aspect-square rounded-lg overflow-hidden cursor-pointer group shadow-md hover:shadow-xl transition-shadow duration-300"
-                onClick={() => openModal(index, "intro")}
-              >
-                <Image
-                  src={imagePath}
-                  alt={`별별파티 소개 ${index + 1}`}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      </section>      
 
       {/* 후기 섹션 */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6">

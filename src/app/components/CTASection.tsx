@@ -20,7 +20,7 @@ const CTASection = () => {
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 text-white/90">
             새로운 인연을 만날 준비가 되셨나요?
-            <br className="hidden sm:block" />
+            <br/>
             예약하기에서 원하는 파티를 선택하고 신청해보세요
           </p>
           <motion.button

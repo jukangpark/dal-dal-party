@@ -74,60 +74,60 @@ export default function CustomerServicePage() {
 
 
   return (
-    <div className="min-h-screen bg-white py-8 sm:py-12 md:py-16 px-4 sm:px-6">
+    <div className="min-h-screen bg-white py-6 sm:py-8 md:py-12 lg:py-16 px-4 sm:px-6">
       <div className="container mx-auto max-w-4xl">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 text-[#0e6d62]"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 md:mb-12 text-[#0e6d62]"
         >
           고객센터
         </motion.h1>
 
         {/* 공지사항 섹션 */}
-        <section className="mb-12 sm:mb-16 md:mb-20">
+        <section className="mb-8 sm:mb-12 md:mb-16 lg:mb-20">
           
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-[#0e6d62]"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 md:mb-8 text-[#0e6d62]"
           >
             공지사항
           </motion.h2>
 
-          <div className="space-y-4 sm:space-y-5">
+          <div className="space-y-3 sm:space-y-4 md:space-y-5">
             {notices.map((notice, index) => (
               <motion.div
                 key={notice.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                className={`border-2 rounded-lg p-4 sm:p-5 md:p-6 ${
+                className={`border-2 rounded-lg p-3 sm:p-4 md:p-5 lg:p-6 ${
                   notice.important
                     ? "border-[#0e6d62] bg-[#0e6d62]/5"
                     : "border-gray-200 bg-white"
                 }`}
               >
-                <div className="flex items-start justify-between mb-2 sm:mb-3">
-                  <div className="flex items-center gap-2 sm:gap-3">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-2 sm:gap-3 mb-2 sm:mb-3">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     {notice.important && (
                       <span className="px-2 sm:px-3 py-1 text-xs sm:text-sm font-semibold bg-[#0e6d62] text-white rounded">
                         중요
                       </span>
                     )}
-                    <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${
+                    <h3 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-tight ${
                       notice.important ? "text-[#0e6d62]" : "text-gray-800"
                     }`}>
                       {notice.title}
                     </h3>
                   </div>
-                  <span className="text-xs sm:text-sm text-gray-500 whitespace-nowrap ml-2">
+                  <span className="text-xs sm:text-sm text-gray-500 whitespace-nowrap">
                     {notice.date}
                   </span>
                 </div>
-                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
                   {notice.content}
                 </p>
               </motion.div>
@@ -141,24 +141,24 @@ export default function CustomerServicePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-[#0e6d62]"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 md:mb-8 text-[#0e6d62]"
           >
             자주 묻는 질문
           </motion.h2>
 
-          <div className="space-y-4 sm:space-y-5">
+          <div className="space-y-3 sm:space-y-4 md:space-y-5">
             {faqs.map((faq, index) => (
               <motion.div
                 key={faq.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 + index * 0.05 }}
-                className="border-2 border-gray-200 rounded-lg p-4 sm:p-5 md:p-6 bg-white"
+                className="border-2 border-gray-200 rounded-lg p-3 sm:p-4 md:p-5 lg:p-6 bg-white"
               >
-                <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 mb-3 sm:mb-4">
+                <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-800 mb-2 sm:mb-3 md:mb-4 leading-snug">
                   Q. {faq.question}
                 </h3>
-                <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
                   A. {faq.answer}
                 </p>
               </motion.div>
@@ -167,19 +167,19 @@ export default function CustomerServicePage() {
         </section>
 
         {/* 제휴 알림 섹션 */}
-        <section className="mt-12 sm:mt-16 md:mt-20">
+        <section className="mt-8 sm:mt-12 md:mt-16 lg:mt-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 text-[#0e6d62]"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-6 md:mb-8 text-[#0e6d62]"
           >
             술개팅 X <span className="text-yellow-400">로멜로</span> 제휴
           </motion.h2>
 
           {/* 제휴 이미지 */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 lg:gap-6">
             {[
               "/술개팅 안전 업체/2.png",
               "/술개팅 안전 업체/3.png",

@@ -154,23 +154,31 @@ export default function SulgaetingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-blue-100"
+            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border border-blue-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0">⚡</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">⚡</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 text-[#0e6d62]">
-                  바쁜 일상속 효율적인 소개팅을 원한다면!
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-[#0e6d62] leading-snug sm:leading-tight">
+                  바쁜 일상 속, 효율적인 소개팅을 원한다면
                 </h2>
-                <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
-                  현재 광주 소개팅 업체 중 <span className="font-bold text-[#0e6d62]">가장 긴 시간, 가장 저렴한 비용</span>으로 진행하고 있습니다.
-                  <br className="hidden sm:block" />
-                  <span className="font-semibold text-blue-600">1년동안 실제 결혼 커플만 2커플.</span>
-                  <br className="hidden sm:block" />
-                  <span className="font-semibold text-emerald-600">📍 상무지구에서 진행되어 이후 다른 약속 가기도 편리합니다!</span>
-                  <br className="hidden sm:block" />
-                  술개팅을 통해 다양한 인연을 만나보세요!
-                </p>
+                <div className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed space-y-2 sm:space-y-3">
+                  <p>
+                    술개팅은 광주 소개팅 업체 중 <span className="font-bold text-[#0e6d62]">가장 긴 대화 시간, 가장 낮은 비용</span>으로 진행하고 있습니다.
+                  </p>
+                  <p>
+                    <span className="font-semibold text-blue-600">1년간 실제 결혼 커플 2커플 탄생</span>
+                  </p>
+                  <p>
+                    <span className="font-semibold text-emerald-600">상무지구 진행 → 소개팅 후 2차·다른 약속 이동 편리</span>
+                  </p>
+                  <p>
+                    짧고 형식적인 만남이 아닌, <span className="font-semibold text-[#0e6d62]">충분히 알아가는 시간</span>
+                  </p>
+                  <p className="pt-2">
+                    바쁜 일상 속에서 소중한 인연을 술개팅에서 만나보세요!
+                  </p>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -181,28 +189,100 @@ export default function SulgaetingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="bg-gradient-to-r from-[#0e6d62] via-emerald-600 to-[#0e6d62] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl mb-6 sm:mb-8 border-2 border-emerald-400/50"
+            className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border-2 border-emerald-200"
           >
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center gap-2 sm:gap-3 mb-4">
+            <div className="text-center mb-4 sm:mb-6 md:mb-8">
+              <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <span className="text-4xl sm:text-5xl">💰</span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">
-                  술 한잔 1차 비용으로 로테이션 소개팅!
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0e6d62] leading-tight">
+                  광주에서 가장 낮은 비용
                 </h2>
               </div>
-              <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-semibold leading-relaxed">
-                일반적인 1차 술자리 비용으로<br className="sm:hidden" />
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 font-semibold leading-relaxed">
+                술자리 1차 비용으로
                 <span className="hidden sm:inline"> </span>
-                <span className="text-yellow-300 font-bold">최대 6명의 이성</span>과 만날 수 있는 기회!
+                <span className="text-[#0e6d62] font-bold">최대 6명의 이성</span>과 만날 수 있는 기회!
               </p>
-              <div className="mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-white">
-                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 sm:px-6 py-2 sm:py-3 border border-white/30">
-                  <p className="text-sm sm:text-base font-semibold">남자 5만원</p>
-                  <p className="text-xs sm:text-sm text-white/80">(비주류 4만원)</p>
+              <div className="mt-3 sm:mt-4 md:mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6">
+                <div className="bg-emerald-50 rounded-xl sm:rounded-2xl px-5 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 border-3 border-emerald-400 shadow-lg">
+                  <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-1 sm:mb-2">남자</p>
+                  <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0e6d62] leading-none">
+                    50,000원
+                  </p>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-3">(비주류 40,000원)</p>
                 </div>
-                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 sm:px-6 py-2 sm:py-3 border border-white/30">
-                  <p className="text-sm sm:text-base font-semibold">여자 3만5천원</p>
-                  <p className="text-xs sm:text-sm text-white/80">(비주류 2만5천원)</p>
+                <div className="bg-emerald-50 rounded-xl sm:rounded-2xl px-5 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 border-3 border-emerald-400 shadow-lg">
+                  <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-1 sm:mb-2">여자</p>
+                  <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0e6d62] leading-none">
+                    35,000원
+                  </p>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-3">(비주류 25,000원)</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 안내사항 및 규정 */}
+            <div className="mt-4 sm:mt-6 md:mt-8 pt-4 sm:pt-6 md:pt-8 border-t-2 border-emerald-100">
+              {/* 안내사항 */}
+              <div className="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-3 sm:p-4 md:p-5 mb-4 sm:mb-6">
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
+                  <strong className="text-[#0e6d62]">안내사항:</strong> 신청 후 운영진 심사 후 승인되신분께만 장소 및 입금 안내가 개별 발송됩니다. 
+                  신청 후 하루 이내 결과 안내 예정입니다.
+                </p>
+              </div>
+
+              {/* 환불 규정 및 특이사항 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                {/* 환불규정 */}
+                <div className="bg-gray-50 rounded-lg p-3 sm:p-4 md:p-5 lg:p-6 border border-gray-200">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2.5 sm:mb-3 md:mb-4 text-[#0e6d62] flex items-center gap-2">
+                    <span>💚</span>
+                    <span>환불규정</span>
+                  </h3>
+                  <ul className="space-y-2 sm:space-y-2.5 md:space-y-3 text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#0e6d62] font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>노쇼시 어떠한 경우에도 환불 불가</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#0e6d62] font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>취소 및 환불은 7일 전까지 가능</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#0e6d62] font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>참가일 5일전 이상 50% 공제 후 환불</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* 특이사항 */}
+                <div className="bg-gray-50 rounded-lg p-3 sm:p-4 md:p-5 lg:p-6 border border-gray-200">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2.5 sm:mb-3 md:mb-4 text-[#0e6d62] flex items-center gap-2">
+                    <span>💚</span>
+                    <span>특이사항</span>
+                  </h3>
+                  <ul className="space-y-2 sm:space-y-2.5 md:space-y-3 text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#0e6d62] font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>호스트의 확정 공지를 받은 분들에 한해서만 참가 가능</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#0e6d62] font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>참가 인원 미달 시 일정이 변경 가능</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#0e6d62] font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>특별한 경우 세부적인 일정 및 장소 등은 변경 가능</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#0e6d62] font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>진행시간에 늦으면 당일 참여가 불가능</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#0e6d62] font-bold mt-0.5 flex-shrink-0">✔️</span>
+                      <span>모임 진행 중 본인 부주의로 인한 사고는 책임지지 않습니다.</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -214,54 +294,68 @@ export default function SulgaetingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="bg-gradient-to-br from-blue-500/10 via-emerald-500/10 to-[#0e6d62]/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border-2 border-emerald-300/50"
+            className="bg-gradient-to-br from-blue-500/10 via-emerald-500/10 to-[#0e6d62]/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border-2 border-emerald-300/50"
           >
-            <div className="text-center mb-4 sm:mb-6">
-              <div className="inline-flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-4">
+            <div className="text-center mb-3 sm:mb-4 md:mb-6">
+              <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3 md:mb-4">
                 <span className="text-3xl sm:text-4xl md:text-5xl">⭐</span>
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0e6d62]">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#0e6d62] leading-tight">
                   술개팅만의 특별한 차별점!
                 </h2>
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+            <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
               {/* 다른 업체 vs 술개팅 - 표 선택 */}
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 border border-emerald-200">
-                <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
-                  <span className="text-2xl sm:text-3xl md:text-4xl flex-shrink-0">📝</span>
-                  <div className="flex-1">
-                    <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62]">표 선택의 자유</h3>
-                    <div className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
-                      <div className="flex items-start gap-1.5 sm:gap-2">
-                        <span className="text-red-500 font-semibold flex-shrink-0 text-base sm:text-lg">❌</span>
-                        <p className="text-gray-700">다른 업체: 1인당 <span className="font-bold">2표만</span> 선택 가능</p>
-                      </div>
-                      <div className="flex items-start gap-1.5 sm:gap-2">
-                        <span className="text-emerald-600 font-semibold flex-shrink-0 text-base sm:text-lg">✅</span>
-                        <p className="text-gray-700 font-semibold">술개팅: <span className="font-bold text-[#0e6d62]">표 전부 다</span> 선택 가능!</p>
-                      </div>
-                    </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 lg:p-7 border border-emerald-200 shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="flex items-start gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+                  <span className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0">📝</span>
+                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#0e6d62] leading-tight">표 선택의 자유</h3>
+                </div>
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                  <div className="bg-red-50 rounded-lg p-3 sm:p-4 md:p-5 border border-red-200">
+                    <p className="text-xs sm:text-sm md:text-base font-semibold text-red-700 mb-1.5 sm:mb-2 md:mb-3">다른 업체</p>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">1인당 <span className="font-bold">2표만</span> 선택 가능</p>
+                  </div>
+                  <div className="bg-emerald-50 rounded-lg p-3 sm:p-4 md:p-5 border border-emerald-200">
+                    <p className="text-xs sm:text-sm md:text-base font-semibold text-[#0e6d62] mb-1.5 sm:mb-2 md:mb-3">술개팅</p>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-800 font-semibold leading-relaxed"><span className="font-bold text-[#0e6d62]">마음 가는 이성 전부</span> 선택 가능!</p>
                   </div>
                 </div>
               </div>
 
               {/* 다른 업체 vs 술개팅 - 매칭 방식 */}
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 border border-emerald-200">
-                <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
-                  <span className="text-2xl sm:text-3xl md:text-4xl flex-shrink-0">💕</span>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 lg:p-7 border border-emerald-200 shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="flex items-start gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+                  <span className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0">💕</span>
+                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#0e6d62] leading-tight">무료 매칭 서비스</h3>
+                </div>
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                  <div className="bg-red-50 rounded-lg p-3 sm:p-4 md:p-5 border border-red-200">
+                    <p className="text-xs sm:text-sm md:text-base font-semibold text-red-700 mb-1.5 sm:mb-2 md:mb-3">다른 업체</p>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">엇갈리면 <span className="font-bold">추가 비용</span> 발생</p>
+                  </div>
+                  <div className="bg-emerald-50 rounded-lg p-3 sm:p-4 md:p-5 border border-emerald-200">
+                    <p className="text-xs sm:text-sm md:text-base font-semibold text-[#0e6d62] mb-1.5 sm:mb-2 md:mb-3">술개팅</p>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-800 font-semibold leading-relaxed"><span className="font-bold text-[#0e6d62]">추가금 없이</span> 상대방 의사를 직접 확인해<br className="hidden sm:block" />
+                    <span className="hidden sm:inline"> </span>최대한 되는 방향으로 진행!</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 참여자 혜택 */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 lg:p-7 border border-emerald-200 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                <div className="flex items-start gap-2.5 sm:gap-3 mb-3">
+                  <span className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0">🎁</span>
                   <div className="flex-1">
-                    <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62]">무료 매칭 서비스</h3>
-                    <div className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
-                      <div className="flex items-start gap-1.5 sm:gap-2">
-                        <span className="text-red-500 font-semibold flex-shrink-0 text-base sm:text-lg">❌</span>
-                        <p className="text-gray-700">다른 업체: 엇갈리면 <span className="font-bold">추가금 내고</span> 매칭</p>
-                      </div>
-                      <div className="flex items-start gap-1.5 sm:gap-2">
-                        <span className="text-emerald-600 font-semibold flex-shrink-0 text-base sm:text-lg">✅</span>
-                        <p className="text-gray-700 font-semibold">술개팅: <span className="font-bold text-[#0e6d62]">무료로</span> 상대방 의사 물어보고<br className="hidden sm:block" />
-                        <span className="hidden sm:inline"> </span>최대한 되는 방향으로 진행!</p>
-                      </div>
+                    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-2.5 sm:mb-3 md:mb-4 text-[#0e6d62] leading-tight">참여자 혜택</h3>
+                    <div className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm md:text-base">
+                      <p className="text-gray-800 font-semibold leading-relaxed">
+                        매월 개최되는 <span className="font-bold text-[#0e6d62]">별별파티 무료 참여 가능!</span>
+                      </p>
+                      <p className="text-gray-600 text-xs sm:text-sm">
+                        (술값만 n분의 1)
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -275,35 +369,35 @@ export default function SulgaetingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-blue-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-emerald-100"
+            className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-blue-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border border-emerald-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0">💚</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">💚</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-[#0e6d62] leading-snug sm:leading-tight">
                   너무 가볍지도 무겁지도 않게 부담없는 만남의 기회!
                 </h2>
                 
                 <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl sm:text-3xl flex-shrink-0">✨</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0 mt-0.5">✨</span>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       헌팅포차, 클럽처럼 가볍지도 않고<br className="sm:hidden" />
                       <span className="hidden sm:inline"> </span>결혼정보회사처럼 무겁지도 않은 기회
                     </p>
                   </div>
                   
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl sm:text-3xl flex-shrink-0">💬</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0 mt-0.5">💬</span>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       주선자 눈치 볼 필요 없는<br className="sm:hidden" />
                       <span className="hidden sm:inline"> </span>솔직하고 편한 자리
                     </p>
                   </div>
                   
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl sm:text-3xl flex-shrink-0">🔒</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-2xl sm:text-3xl flex-shrink-0 mt-0.5">🔒</span>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       신분이 보장된 남녀를 위한<br className="sm:hidden" />
                       <span className="hidden sm:inline"> </span>새로운 소개팅 문화
                     </p>
@@ -320,33 +414,33 @@ export default function SulgaetingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-blue-100"
+            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border border-blue-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0">🎯</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">🎯</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-[#0e6d62] leading-snug sm:leading-tight">
                   선정 기준
                 </h2>
-                <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed mb-4">
-                  엄격심사 통해 데이트상대 선별 보장
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-3 sm:mb-4 font-bold">
+                무분별한 모집 NO, 사전 심사를 통해 선별 운영
                 </p>
-                <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-start gap-3">
-                    <span className="text-lg sm:text-xl font-bold text-[#0e6d62] flex-shrink-0">1.</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                <div className="space-y-2.5 sm:space-y-3 md:space-y-4">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-base sm:text-lg md:text-xl font-bold text-[#0e6d62] flex-shrink-0">1.</span>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       외모, 직업, 나이 등을 신중하게 고려하여 선정
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-lg sm:text-xl font-bold text-[#0e6d62] flex-shrink-0">2.</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-base sm:text-lg md:text-xl font-bold text-[#0e6d62] flex-shrink-0">2.</span>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       신분 확인 (사진/이름/생년월일)
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-lg sm:text-xl font-bold text-[#0e6d62] flex-shrink-0">3.</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <span className="text-base sm:text-lg md:text-xl font-bold text-[#0e6d62] flex-shrink-0">3.</span>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       종교, 주량, MBTI 등 체크 (술 못드시는 분들도 OK!)
                     </p>
                   </div>
@@ -361,20 +455,20 @@ export default function SulgaetingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-blue-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-emerald-100"
+            className="bg-gradient-to-br from-[#0e6d62]/10 via-emerald-50/50 to-blue-50/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl mb-4 sm:mb-6 md:mb-8 border border-emerald-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0">📋</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">📋</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-[#0e6d62] leading-snug sm:leading-tight">
                   진행 방식
                 </h2>
                 
-                <div className="space-y-4 sm:space-y-6">
+                <div className="space-y-3 sm:space-y-4 md:space-y-6">
                   {/* 1. 도착 및 룰 설명 */}
                   <div>
-                    <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62]">1. 도착 및 룰 설명</h3>
-                    <div className="space-y-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62] leading-tight">1. 도착 및 룰 설명</h3>
+                    <div className="space-y-2 text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       <p>방 번호를 사전에 알려드려요!</p>
                       <p>일찍 도착하신 분은 말씀해주세요 ㅎㅎ</p>
                       <p className="text-sm sm:text-base text-gray-600">(10분 전 입실 가능)</p>
@@ -383,8 +477,8 @@ export default function SulgaetingPage() {
 
                   {/* 2. 자율 대화 시간 */}
                   <div>
-                    <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62]">2. 자율 대화 시간</h3>
-                    <div className="space-y-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62] leading-tight">2. 자율 대화 시간</h3>
+                    <div className="space-y-2 text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       <p>테이블별로 20분씩 자유롭게 대화합니다.</p>
                       <p>여성분들은 앉아 계시고 남성분들이 다음방으로 이동!</p>
                       <p>모든 테이블이 돌며 다양한 이성과 만남을 가집니다.</p>
@@ -394,8 +488,8 @@ export default function SulgaetingPage() {
 
                   {/* 3. 자리 이동 */}
                   <div>
-                    <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62]">3. 자리 이동</h3>
-                    <div className="space-y-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62] leading-tight">3. 자리 이동</h3>
+                    <div className="space-y-2 text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       <p>여성분들은 자리에 앉아계시고, 남성분들은 진행자의 안내에 따라 다음 테이블로 이동합니다.</p>
                       <p>진행자는 자리만 섞어드린 후, 참가자분들이 불편하지 않도록 보이지 않는 곳에서 대기합니다.</p>
                     </div>
@@ -403,19 +497,19 @@ export default function SulgaetingPage() {
 
                   {/* 4. 매칭 및 종료 */}
                   <div>
-                    <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62]">4. 매칭 및 종료</h3>
-                    <div className="space-y-2 text-base sm:text-lg text-gray-700 leading-relaxed">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 text-[#0e6d62] leading-tight">4. 매칭 및 종료</h3>
+                    <div className="space-y-2 text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       <p>모든 테이블을 돌면 프로그램은 종료됩니다.</p>
                       <p>종료 후 퇴실하시면서 카톡으로 맘에 드시는 분 번호를 말씀해주세요.</p>
                       <p>참가자분들이 서로 지목하면, 저희가 단톡방을 만들어드립니다.</p>
                       <div className="mt-3 p-3 sm:p-4 bg-white/60 rounded-lg border border-emerald-200">
-                        <p className="font-semibold mb-2 text-[#0e6d62]">지목당하지 않더라도 본인을 지목한 분이 있다면 따로 알려드립니다!</p>
-                        <p className="text-sm sm:text-base text-gray-600 mb-2">ex) 참여자A가 B와C를 지목했지만, B와C는 A를 지목하지 않은 상황이라고 가정해볼게요!</p>
-                        <div className="space-y-1 text-sm sm:text-base text-gray-700">
+                        <p className="text-sm sm:text-base font-semibold mb-2 text-[#0e6d62] leading-relaxed">지목당하지 않더라도 본인을 지목한 분이 있다면 따로 알려드립니다!</p>
+                        <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-2 leading-relaxed">ex) 참여자A가 B와C를 지목했지만, B와C는 A를 지목하지 않은 상황이라고 가정해볼게요!</p>
+                        <div className="space-y-1 text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">
                           <p>1) A 님 아무도 선택하지 않았습니다.</p>
                           <p>2) A 님 매칭이 되지 않으셨지만, D와 E가 A 님을 지목하셨습니다!</p>
                         </div>
-                        <p className="text-sm sm:text-base text-gray-600 mt-2">이런식으로 모든 분께 투표 결과를 알려드립니다!</p>
+                        <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-2 leading-relaxed">이런식으로 모든 분께 투표 결과를 알려드립니다!</p>
                       </div>
                     </div>
                   </div>
@@ -430,48 +524,42 @@ export default function SulgaetingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-blue-100"
+            className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-xl border border-blue-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0">⚠️</div>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="text-3xl sm:text-4xl md:text-5xl flex-shrink-0 self-start">⚠️</div>
               <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-[#0e6d62] leading-snug sm:leading-tight">
                   주의사항
                 </h2>
-                <div className="space-y-2 sm:space-y-3">
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">•</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                <div className="space-y-2.5 sm:space-y-3">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       이동할 때 개인 물품은 가지고 이동해주세요!
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">•</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       안주는 여성분들이 사전에 원하시는 걸로 최대한 반영했습니다! 추가 주문 안됩니다!
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">•</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       대화 도중 화장실 급하신 분들은 상대분께 양해를 구하고 다녀오시면 됩니다!
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">•</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                      메모지에 맘에 드신 이성 번호를 두 분 선택해주시고 입구에 있는 저에게 번호표와 함께 주시고 퇴장하시면 됩니다!
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
+                      맘에 드신 이성을 선택해주시고 저에게 번호표를 주시고 퇴장하시면 됩니다!
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">•</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       24시간 내에 정리해서 결과 발송해드려요.
                     </p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-[#0e6d62] text-lg sm:text-xl flex-shrink-0 mt-1">•</span>
-                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       맘에 드신 이성이 있으시다면 꼭 번호를 기억해주세요!
                     </p>
                   </div>
@@ -482,121 +570,24 @@ export default function SulgaetingPage() {
         </div>
       </section>
 
-
-
-      {/* 술개팅 소개 텍스트 섹션 */}
-      <section className="py-8 sm:py-12 md:py-16 px-3 sm:px-4 bg-white">
-        <div className="container mx-auto max-w-4xl">
-          {/* 메인 타이틀 */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+      {/* 배너 섹션 */}
+      <section className="w-full bg-gradient-to-r from-[#0e6d62] via-emerald-600 to-[#0e6d62] py-6 sm:py-8 md:py-10">
+        <div className="w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-[#0e6d62] text-center"
-          >
-            👉 참가자의 신분과 직업이 검증된 프리미엄 소개팅!
-          </motion.h2>
-
-          {/* 주요 특징 카드들 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mb-4 sm:mb-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-gray-50 rounded-lg p-4 sm:p-5 md:p-6 border border-gray-200"
-            >
-              <div className="flex items-start gap-3">
-                <span className="text-3xl sm:text-4xl flex-shrink-0">💬</span>
-                <div>
-                  <h3 className="font-semibold text-base sm:text-lg mb-1 text-[#0e6d62]">1:1 릴레이 소개팅</h3>
-                  <p className="text-sm sm:text-base text-gray-700">최대 6명의 이성을 만날 수 있어요!</p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-gray-50 rounded-lg p-4 sm:p-5 md:p-6 border border-gray-200"
-            >
-              <div className="flex items-start gap-3">
-                <span className="text-3xl sm:text-4xl flex-shrink-0">💰</span>
-                <div>
-                  <h3 className="font-semibold text-base sm:text-lg mb-1 text-[#0e6d62]">합리적인 비용</h3>
-                  <p className="text-sm sm:text-base text-gray-700">타 업체보다 더 긴 시간, 더 합리적인 비용</p>
-                  <p className="text-xs sm:text-sm mt-1 text-gray-600">남자 5만원, 여자 3만5천원</p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-gray-50 rounded-lg p-4 sm:p-5 md:p-6 border border-gray-200"
-            >
-              <div className="flex items-start gap-3">
-                <span className="text-3xl sm:text-4xl flex-shrink-0">🍷</span>
-                <div>
-                  <h3 className="font-semibold text-base sm:text-lg mb-1 text-[#0e6d62]">비주류 참여 가능</h3>
-                  <p className="text-sm sm:text-base text-gray-700">술을 마시지 않더라도 참여 가능!</p>
-                  <p className="text-xs sm:text-sm mt-1 text-gray-600">남자 4만원, 여자 2만5천원</p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-gray-50 rounded-lg p-4 sm:p-5 md:p-6 border border-gray-200"
-            >
-              <div className="flex items-start gap-3">
-                <span className="text-3xl sm:text-4xl flex-shrink-0">📅</span>
-                <div>
-                  <h3 className="font-semibold text-base sm:text-lg mb-1 text-[#0e6d62]">참여자 혜택</h3>
-                  <p className="text-sm sm:text-base text-gray-700">매월 개최되는 대규모 파티에도 무료로 참여 가능!</p>
-                  <p className="text-xs sm:text-sm mt-1 text-gray-600">(성비 1.x:1)</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* 특징 설명 카드 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="bg-gray-50 rounded-lg p-4 sm:p-5 md:p-6 border border-gray-200 mb-4 sm:mb-6"
-          >
-            <div className="flex items-start gap-3">
-              <span className="text-3xl sm:text-4xl flex-shrink-0">💡</span>
-              <div>
-                <h3 className="font-semibold text-base sm:text-lg mb-2 text-[#0e6d62]">부담 없는 적당한 만남</h3>
-                <p className="text-sm sm:text-base text-gray-700">
-                  헌팅포차나 클럽처럼 가볍지도, 결혼정보회사처럼 무겁지도 않은 적당한 만남!
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* 하단 강조 문구 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
             className="text-center"
           >
-            <p className="text-lg sm:text-xl md:text-2xl font-bold text-[#0e6d62] bg-gradient-to-r from-[#0e6d62] to-[#059669] bg-clip-text text-transparent">
-              💚지금 로테이션 술소개팅에서 새로운 인연을 만들어 보세요!💚
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+              로테이션 소개팅 술개팅에서 새로운 인연을 만나보세요!
             </p>
           </motion.div>
         </div>
       </section>
 
-
-            {/* 실제 커플 후기 섹션 */}
+      {/* 실제 커플 후기 섹션 */}
             <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-7xl">
           <motion.h2

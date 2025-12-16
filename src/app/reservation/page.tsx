@@ -171,7 +171,7 @@ export default function ReservationPage() {
         });
         
         setPartyDatesByMonth(grouped);
-      } catch (error) {
+      } catch {
         // 에러 발생 시 빈 객체로 설정
         setPartyDatesByMonth({});
       } finally {
@@ -267,7 +267,7 @@ export default function ReservationPage() {
                 }
                 return data;
               })
-              .catch(error => {
+              .catch(() => {
                 return { total: 0, male: 0, female: 0, applications: [] };
               })
           )
@@ -303,7 +303,8 @@ export default function ReservationPage() {
             }
           }
         });
-      } catch (error) {
+      } catch {
+        // 에러 발생 시 무시
       }
       
       setStatsByDate(newStats);
@@ -314,13 +315,13 @@ export default function ReservationPage() {
   }, [partyDatesByMonth, loadingParties]); // partyDatesByMonth가 변경될 때마다 실행
 
   return (
-    <div className="min-h-screen bg-white py-8 sm:py-12 md:py-16 px-4 sm:px-6">
+    <div className="min-h-screen bg-white py-6 sm:py-8 md:py-12 lg:py-16 px-4 sm:px-6">
       <div className="container mx-auto max-w-4xl">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 text-[#0e6d62]"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-8 md:mb-12 text-[#0e6d62]"
         >
           예약하기
         </motion.h1>
@@ -330,13 +331,13 @@ export default function ReservationPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-lg shadow-lg p-2 sm:p-4 md:p-6 lg:p-8 border border-gray-200"
+          className="bg-white rounded-lg shadow-lg p-2 sm:p-3 md:p-4 lg:p-6 xl:p-8 border border-gray-200"
         >
           {/* 달력 헤더 */}
-          <div className="flex items-center justify-between mb-3 sm:mb-4 md:mb-6">
+          <div className="flex items-center justify-between mb-2 sm:mb-3 md:mb-4 lg:mb-6">
             <button
               onClick={goToPreviousMonth}
-              className="p-1 sm:p-2 hover:bg-gray-100 rounded sm:rounded-lg transition-colors duration-200"
+              className="p-1 sm:p-1.5 md:p-2 hover:bg-gray-100 rounded transition-colors duration-200"
               aria-label="이전 달"
             >
               <svg
@@ -353,12 +354,12 @@ export default function ReservationPage() {
                 />
               </svg>
             </button>
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#0e6d62]">
+            <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-[#0e6d62]">
               {currentMonth.getFullYear()}년 {currentMonth.getMonth() + 1}월
             </h2>
             <button
               onClick={goToNextMonth}
-              className="p-1 sm:p-2 hover:bg-gray-100 rounded sm:rounded-lg transition-colors duration-200"
+              className="p-1 sm:p-1.5 md:p-2 hover:bg-gray-100 rounded transition-colors duration-200"
               aria-label="다음 달"
             >
               <svg
@@ -378,11 +379,11 @@ export default function ReservationPage() {
           </div>
 
           {/* 요일 헤더 */}
-          <div className="grid grid-cols-7 gap-1 sm:gap-2 mb-1 sm:mb-2">
+          <div className="grid grid-cols-7 gap-0.5 sm:gap-1 md:gap-2 mb-1 sm:mb-2">
             {weekDays.map((day, index) => (
               <div
                 key={index}
-                className="text-center font-semibold text-xs sm:text-sm md:text-base py-1 sm:py-2 text-gray-700"
+                className="text-center font-semibold text-[10px] sm:text-xs md:text-sm lg:text-base py-1 sm:py-1.5 md:py-2 text-gray-700"
               >
                 {day}
               </div>
@@ -390,7 +391,7 @@ export default function ReservationPage() {
           </div>
 
           {/* 달력 날짜들 */}
-          <div className="grid grid-cols-7 gap-1 sm:gap-2">
+          <div className="grid grid-cols-7 gap-0.5 sm:gap-1 md:gap-2">
             {calendarDays.map((day, index) => {
               const partyInfo = day !== null ? getPartyInfo(day) : undefined;
               const isPartyDate = !!partyInfo;
@@ -399,7 +400,7 @@ export default function ReservationPage() {
               return (
                 <div
                   key={index}
-                  className={`aspect-square rounded sm:rounded-lg border-2 transition-all duration-200 ${
+                  className={`aspect-square rounded sm:rounded-md md:rounded-lg border-2 transition-all duration-200 ${
                     day === null
                       ? "border-transparent"
                       : isPartyDate
@@ -410,9 +411,9 @@ export default function ReservationPage() {
                   }`}
                 >
                   {day !== null && (
-                    <div className="h-full flex flex-col items-center justify-center p-0.5 sm:p-1 md:p-2">
+                    <div className="h-full flex flex-col items-center justify-center p-0.5 sm:p-1 md:p-1.5 lg:p-2">
                       <span
-                        className={`text-xs sm:text-sm md:text-base font-medium mb-0.5 sm:mb-1 ${
+                        className={`text-[10px] sm:text-xs md:text-sm lg:text-base font-medium mb-0.5 sm:mb-1 ${
                           isRecruiting 
                             ? getPartyTextColor(partyInfo?.category || 'sulgaeting', true)
                             : isPartyDate 
@@ -424,7 +425,7 @@ export default function ReservationPage() {
                       </span>
                       {partyInfo?.title && (
                         <span
-                          className={`text-[8px] sm:text-[10px] md:text-xs font-medium mb-0.5 text-center leading-tight px-0.5 ${
+                          className={`text-[7px] sm:text-[8px] md:text-[10px] lg:text-xs font-medium mb-0.5 text-center leading-tight px-0.5 ${
                             isRecruiting 
                               ? getPartyTextColor(partyInfo.category || 'sulgaeting', true)
                               : "text-gray-500"
@@ -437,7 +438,7 @@ export default function ReservationPage() {
                       {isRecruiting && (
                         <button
                           onClick={() => handleApplyClick(partyInfo)}
-                          className={`mt-0.5 sm:mt-1 px-1 sm:px-2 md:px-3 py-0.5 sm:py-1 text-[8px] sm:text-[10px] md:text-xs font-semibold text-white rounded transition-colors duration-200 whitespace-nowrap cursor-pointer ${
+                          className={`mt-0.5 sm:mt-1 px-1 sm:px-1.5 md:px-2 lg:px-3 py-0.5 sm:py-0.5 md:py-1 text-[7px] sm:text-[8px] md:text-[10px] lg:text-xs font-semibold text-white rounded transition-colors duration-200 whitespace-nowrap cursor-pointer ${
                             partyInfo.category === 'hexagon-party' 
                               ? 'bg-purple-600 hover:bg-purple-700'
                               : partyInfo.category === 'star-party'
@@ -449,7 +450,7 @@ export default function ReservationPage() {
                         </button>
                       )}
                       {isPartyDate && !isRecruiting && (
-                        <span className="mt-0.5 sm:mt-1 text-[8px] sm:text-[10px] md:text-xs text-gray-500">마감</span>
+                        <span className="mt-0.5 sm:mt-1 text-[7px] sm:text-[8px] md:text-[10px] lg:text-xs text-gray-500">마감</span>
                       )}
                     </div>
                   )}
@@ -461,23 +462,23 @@ export default function ReservationPage() {
       </div>
 
       {/* 신청현황 섹션 */}
-      <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6">
+      <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 sm:px-6">
         <div className="container mx-auto max-w-4xl">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12 text-[#0e6d62]"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-6 md:mb-8 lg:mb-12 text-[#0e6d62]"
           >
             신청현황
           </motion.h2>
 
           {loadingParties ? (
-            <div className="text-center py-8">
-              <p className="text-gray-500">파티 일정을 불러오는 중...</p>
+            <div className="text-center py-6 sm:py-8">
+              <p className="text-sm sm:text-base text-gray-500">파티 일정을 불러오는 중...</p>
             </div>
           ) : (
-            <div className="space-y-4 sm:space-y-5 md:space-y-6">
+            <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
               {/* 모든 월의 파티들을 동적으로 표시 - 최신 날짜가 맨 위로 */}
               {Object.entries(partyDatesByMonth)
                 .sort(([a], [b]) => b.localeCompare(a)) // 최신 날짜가 먼저 (내림차순)
@@ -509,14 +510,14 @@ export default function ReservationPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: (previousPartiesCount + index) * 0.1 }}
-                        className={`border-2 rounded-lg p-4 sm:p-5 md:p-6 ${
+                        className={`border-2 rounded-lg p-3 sm:p-4 md:p-5 lg:p-6 ${
                           party.status === "모집중" 
                             ? `${getPartyBorderColor(party.category, true)} bg-white` 
                             : "border-gray-300 bg-gray-50"
                         }`}
                       >
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-2 mb-2 sm:mb-3">
+                          <h3 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug sm:leading-tight ${
                             getPartyTextColor(party.category, party.status === "모집중")
                           }`}>
                             ⭐️ {monthNum}/{party.date}({["일", "월", "화", "수", "목", "금", "토"][new Date(parseInt(year), monthNum - 1, party.date).getDay()]})
@@ -525,14 +526,14 @@ export default function ReservationPage() {
                           </h3>
                         </div>
                         {party.time && (
-                          <p className="text-sm sm:text-base text-gray-600 mb-1">{party.time}</p>
+                          <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-1">{party.time}</p>
                         )}
                         {party.ageRange && (
-                          <p className="text-xs sm:text-sm text-gray-600 mb-2">({party.ageRange})</p>
+                          <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">({party.ageRange})</p>
                         )}
                         {/* Google Sheets에서 조회한 실제 신청 현황 표시 */}
                         {loadingStats ? (
-                          <p className="text-sm sm:text-base text-gray-500 mb-3">신청 현황 조회 중...</p>
+                          <p className="text-xs sm:text-sm md:text-base text-gray-500 mb-3">신청 현황 조회 중...</p>
                         ) : (
                           <>
                             {/* 승인된 신청자만 카운트 */}
@@ -546,21 +547,21 @@ export default function ReservationPage() {
                               const targetFemale = party.femaleCount || 0;
                               
                               return (
-                                <div className="mb-4">
+                                <div className="mb-3 sm:mb-4">
                                   {/* 정원/확정 정보 카드 */}
-                                  <div className="bg-gray-50 rounded-lg p-3 sm:p-4 mb-4 border border-gray-200">
-                                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                                  <div className="bg-gray-50 rounded-lg p-2.5 sm:p-3 md:p-4 mb-3 sm:mb-4 border border-gray-200">
+                                    <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:gap-4">
                                       {(targetMale > 0 || targetFemale > 0) && (
                                         <div>
-                                          <p className="text-xs sm:text-sm text-gray-500 mb-1">정원</p>
-                                          <p className="text-base sm:text-lg font-semibold text-gray-800">
+                                          <p className="text-[10px] sm:text-xs md:text-sm text-gray-500 mb-0.5 sm:mb-1">정원</p>
+                                          <p className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 leading-tight">
                                             남{targetMale}명 여{targetFemale}명
                                           </p>
                                         </div>
                                       )}
                                       <div>
-                                        <p className="text-xs sm:text-sm text-gray-500 mb-1">확정</p>
-                                        <p className="text-base sm:text-lg font-semibold text-[#0e6d62]">
+                                        <p className="text-[10px] sm:text-xs md:text-sm text-gray-500 mb-0.5 sm:mb-1">확정</p>
+                                        <p className="text-sm sm:text-base md:text-lg font-semibold text-[#0e6d62] leading-tight">
                                           남{approvedMale}명 여{approvedFemale}명
                                         </p>
                                       </div>
@@ -569,17 +570,17 @@ export default function ReservationPage() {
                                   
                                   {/* 신청자 목록 */}
                                   {displayStats.applications && displayStats.applications.length > 0 && (
-                                    <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
+                                    <div className="grid md:grid-cols-2 gap-2.5 sm:gap-3 md:gap-4">
                                       {displayStats.applications.filter((app) => app['성별'] === 'male').length > 0 && (
-                                        <div className="bg-sky-50 rounded-lg p-4 sm:p-5 border border-sky-100">
-                                          <div className="flex items-center gap-2 mb-3 pb-2 border-b border-sky-200">
-                                            <span className="text-lg">💁‍♂️</span>
-                                            <p className="font-semibold text-base sm:text-lg text-blue-600">남성</p>
-                                            <span className="text-xs text-gray-500">
+                                        <div className="bg-sky-50 rounded-lg p-3 sm:p-4 md:p-5 border border-sky-100">
+                                          <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3 pb-2 border-b border-sky-200">
+                                            <span className="text-base sm:text-lg">💁‍♂️</span>
+                                            <p className="font-semibold text-sm sm:text-base md:text-lg text-blue-600">남성</p>
+                                            <span className="text-[10px] sm:text-xs text-gray-500">
                                               ({displayStats.applications.filter((app) => app['성별'] === 'male').length}명)
                                             </span>
                                           </div>
-                                          <div className="space-y-2">
+                                          <div className="space-y-1.5 sm:space-y-2">
                                             {displayStats.applications
                                               .filter((app) => app['성별'] === 'male')
                                               .sort((a, b) => {
@@ -600,21 +601,21 @@ export default function ReservationPage() {
                                                 return (
                                                   <div 
                                                     key={i} 
-                                                    className={`flex items-center justify-between py-2 px-2 rounded ${
+                                                    className={`flex items-center justify-between py-1.5 sm:py-2 px-1.5 sm:px-2 rounded ${
                                                       isApproved ? 'bg-white' : 'bg-gray-50'
                                                     }`}
                                                   >
-                                                    <p className="text-sm sm:text-base text-gray-800 font-medium">
+                                                    <p className="text-xs sm:text-sm md:text-base text-gray-800 font-medium leading-relaxed">
                                                       {birthYearText ? `${birthYearText} ` : ''}{app['직업'] || ''}
                                                     </p>
-                                                    <div className="flex items-center gap-2">
+                                                    <div className="flex items-center gap-1.5 sm:gap-2">
                                                       {isPending && (
-                                                        <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded">
+                                                        <span className="text-[10px] sm:text-xs text-gray-500 bg-gray-200 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
                                                           심사중
                                                         </span>
                                                       )}
                                                       {isApproved && (
-                                                        <span className="text-[#0e6d62] font-bold text-lg">✓</span>
+                                                        <span className="text-[#0e6d62] font-bold text-base sm:text-lg">✓</span>
                                                       )}
                                                     </div>
                                                   </div>
@@ -624,15 +625,15 @@ export default function ReservationPage() {
                                         </div>
                                       )}
                                       {displayStats.applications.filter((app) => app['성별'] === 'female').length > 0 && (
-                                        <div className="bg-pink-50 rounded-lg p-4 sm:p-5 border border-pink-100">
-                                          <div className="flex items-center gap-2 mb-3 pb-2 border-b border-pink-200">
-                                            <span className="text-lg">💁‍♀️</span>
-                                            <p className="font-semibold text-base sm:text-lg text-pink-600">여성</p>
-                                            <span className="text-xs text-gray-500">
+                                        <div className="bg-pink-50 rounded-lg p-3 sm:p-4 md:p-5 border border-pink-100">
+                                          <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3 pb-2 border-b border-pink-200">
+                                            <span className="text-base sm:text-lg">💁‍♀️</span>
+                                            <p className="font-semibold text-sm sm:text-base md:text-lg text-pink-600">여성</p>
+                                            <span className="text-[10px] sm:text-xs text-gray-500">
                                               ({displayStats.applications.filter((app) => app['성별'] === 'female').length}명)
                                             </span>
                                           </div>
-                                          <div className="space-y-2">
+                                          <div className="space-y-1.5 sm:space-y-2">
                                             {displayStats.applications
                                               .filter((app) => app['성별'] === 'female')
                                               .sort((a, b) => {
@@ -653,21 +654,21 @@ export default function ReservationPage() {
                                                 return (
                                                   <div 
                                                     key={i} 
-                                                    className={`flex items-center justify-between py-2 px-2 rounded ${
+                                                    className={`flex items-center justify-between py-1.5 sm:py-2 px-1.5 sm:px-2 rounded ${
                                                       isApproved ? 'bg-white' : 'bg-gray-50'
                                                     }`}
                                                   >
-                                                    <p className="text-sm sm:text-base text-gray-800 font-medium">
+                                                    <p className="text-xs sm:text-sm md:text-base text-gray-800 font-medium leading-relaxed">
                                                       {birthYearText ? `${birthYearText} ` : ''}{app['직업'] || ''}
                                                     </p>
-                                                    <div className="flex items-center gap-2">
+                                                    <div className="flex items-center gap-1.5 sm:gap-2">
                                                       {isPending && (
-                                                        <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded">
+                                                        <span className="text-[10px] sm:text-xs text-gray-500 bg-gray-200 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded">
                                                           심사중
                                                         </span>
                                                       )}
                                                       {isApproved && (
-                                                        <span className="text-[#0e6d62] font-bold text-lg">✓</span>
+                                                        <span className="text-[#0e6d62] font-bold text-base sm:text-lg">✓</span>
                                                       )}
                                                     </div>
                                                   </div>

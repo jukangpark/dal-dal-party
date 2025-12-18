@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "술개팅",
-  description: "광주소개팅 술개팅 로테이션 술(소)개팅",
+  description: "광주소개팅 술개팅 로테이션 술(소)개팅 | 파티",
 };
 
 export default function RootLayout({

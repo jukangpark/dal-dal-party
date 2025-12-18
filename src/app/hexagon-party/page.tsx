@@ -321,14 +321,14 @@ export default function HexagonPartyPage() {
                   <div className="flex items-center gap-3">
                     <span className="text-2xl sm:text-3xl flex-shrink-0">🔒</span>
                     <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                      <span className="font-bold text-[#0e6d62]">외모/키(몸매)/재력/직업</span> 중 2개 이상 통과한 사람만 올 수 있는 승인제 파티
+                      <span className="font-bold text-[#0e6d62]">외모/키(몸매)/재력/직업</span> 중 2개 이상 자신있는 사람만 올 수 있는 승인제 파티
                     </p>
                   </div>
                   
                   <div className="flex items-center gap-3">
                     <span className="text-2xl sm:text-3xl flex-shrink-0">💬</span>
                     <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                      간단한 아이스 브레이킹, 자연스러운 연락처 교환 타이밍, 자연스로운 대화 위주 파티
+                      간단한 아이스 브레이킹, 자연스러운 연락처 교환 타이밍, 대화 위주 파티
                     </p>
                   </div>
                   

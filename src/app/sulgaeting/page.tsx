@@ -338,7 +338,7 @@ export default function SulgaetingPage() {
                   <div className="bg-emerald-50 rounded-lg p-3 sm:p-4 md:p-5 border border-emerald-200">
                     <p className="text-xs sm:text-sm md:text-base font-semibold text-[#0e6d62] mb-1.5 sm:mb-2 md:mb-3">술개팅</p>
                     <p className="text-xs sm:text-sm md:text-base text-gray-800 font-semibold leading-relaxed"><span className="font-bold text-[#0e6d62]">추가금 없이</span> 상대방 의사를 직접 확인해<br className="hidden sm:block" />
-                    <span className="hidden sm:inline"> </span>최대한 되는 방향으로 진행!</p>
+                    <span> </span>최대한 되는 방향으로 진행!</p>
                   </div>
                 </div>
               </div>

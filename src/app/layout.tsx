@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "술개팅 | 광주 육각형 남녀 파티",
-  description: "주변에 괜찮은 사람들이 없다면 여기입니다! 아무나 올 수 없는 승인제 파티",
+  title: "술개팅",
+  description: "광주소개팅 술개팅 로테이션 술(소)개팅",
 };
 
 export default function RootLayout({

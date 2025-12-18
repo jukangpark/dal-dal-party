@@ -123,7 +123,7 @@ export default function StarPartyPage() {
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
                   소개팅보다 부담 없고, 감주나 헌팅포차보다 자유롭게!
                   <br className="hidden sm:block" />
-                  나이, 이름, 직업만 기입하면 누구나 참석 가능!
+                  나이, 이름, 직업만 기입하면 누구나 참석 가능! <br/>
                   <br className="hidden sm:block" />
                   <span className="font-bold text-[#0e6d62]">광주에서 가장 핫하고 편안한 파티, 별별파티에 오세요!</span>
                 </p>
@@ -312,7 +312,7 @@ export default function StarPartyPage() {
                   </div>
                   <div className="flex items-start gap-2.5 sm:gap-3">
                     <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-                      2차는 원할 때 자유롭게! N분의 1로 부담 없는 즐거움
+                      N분의 1로 부담 없는 즐거움
                     </p>
                   </div>
                   <div className="flex items-start gap-2.5 sm:gap-3">
@@ -341,7 +341,7 @@ export default function StarPartyPage() {
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
                   2차는 원한다면 참가비는 N분의 1로 진행하며, 맘에 드는 상대가 있다면 자유롭게 떠날 수 있습니다!
-                  <br className="hidden sm:block" />
+                  <br className="hidden sm:block" /><br/>
                   <span className="font-semibold text-[#0e6d62]">장소는 파티룸 또는 상무지구 인근 술집!</span>
                 </p>
               </div>
@@ -413,7 +413,7 @@ export default function StarPartyPage() {
                 </div>
                 <div className="mt-3 sm:mt-4">
                   <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0e6d62] mb-2">최대 120명</p>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">참여 가능한 대규모 파티</p>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">누구나 참여 가능한 대규모 파티</p>
                 </div>
               </motion.div>
 

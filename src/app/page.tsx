@@ -137,10 +137,23 @@ export default function Home() {
           </motion.button>
         </motion.div>
       </section>
+
+      {/* 로고 */}
+      <div className="flex justify-center items-center mt-10 py-8 md:py-12 lg:py-16 min-h-[200px] md:min-h-[280px] lg:min-h-[320px]">
+              <div
+                className="w-40 h-40 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-no-repeat bg-center flex-shrink-0"
+                style={{
+                  backgroundImage: `url('/술개팅로고.jpg')`,
+                  backgroundSize: '255%',
+                }}
+                role="img"
+                aria-label="술개팅 로고"
+              />
+      </div>
       
 
       {/* 메인 카피 섹션 */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
+      <section className="py-6 sm:py-12 md:py-12 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -614,7 +627,7 @@ export default function Home() {
                         그 인연이 오래 이어졌으면 좋겠습니다.
                       </p>
                       <p className="text-right mt-6 sm:mt-8">
-                        그 마음으로, 오늘도 하나하나 진심을 담아 운영합니다.<br/>
+                        그 마음으로, <br/>오늘도 하나하나 진심을 담아 운영합니다.<br/>
                         <span className="font-semibold text-[#0e6d62]">감사합니다.</span>
                       </p>
                     </div>

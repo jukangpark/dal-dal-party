@@ -359,12 +359,12 @@ const ApplyPage = () => {
                   <br />
                   <span>• 술개팅 참여자: 술값 N분의 1, 참여비 무료</span>
                   <br />
-                  <span>• 그 외: 술값 N분의 1, 참여비 2만원</span>
+                  <span>• 그 외: 술값 N분의 1, 참여비 1만원</span>
                   <br />
                   <span className="text-xs text-gray-600">(간단한 안주, 소주/맥주 무제한 제공)</span>
                 </div>
                 <div>
-                  <span className="font-semibold text-[#0e6d62]">진행 시간:</span> 약 2시간
+                  <span className="font-semibold text-[#0e6d62]">진행 시간:</span> 약 2시간 + a
                 </div>
                 <div>
                   <span className="font-semibold text-[#0e6d62]">장소:</span> (선정자 개별공지 예정)

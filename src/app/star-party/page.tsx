@@ -151,7 +151,7 @@ export default function StarPartyPage() {
               </p>
               <div className="space-y-2 sm:space-y-2.5 text-white/90">
                 <p className="text-sm sm:text-base md:text-lg">인원 제한 없이 누구나 부담없이 참석 가능!</p>
-                <p className="text-xs sm:text-sm md:text-base text-white/80">* 약 2시간 동안 진행합니다.</p>
+                <p className="text-xs sm:text-sm md:text-base text-white/80">* 약 2시간 + a 동안 진행합니다.</p>
               </div>
             </div>
           </motion.div>
@@ -297,7 +297,7 @@ export default function StarPartyPage() {
                 <div className="space-y-2.5 sm:space-y-3">
                   <div className="flex items-start gap-2.5 sm:gap-3">
                     <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-                      참가비 만 원으로 2시간 동안 부담 없이 즐기기
+                      참가비 만 원으로 2시간 + a 동안 부담 없이 즐기기
                     </p>
                   </div>
                   <div className="flex items-start gap-2.5 sm:gap-3">
@@ -471,7 +471,7 @@ export default function StarPartyPage() {
                       그 외
                     </p>
                     <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-                      술값 N분의 1, 참여비 2만원
+                      술값 N분의 1, 참여비 1만원
                     </p>
                   </div>
                   <div className="mt-3 sm:mt-4 p-3 sm:p-4 md:p-5 bg-yellow-50 rounded-xl border border-yellow-200">

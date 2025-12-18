@@ -10,3 +10,4 @@ const sulgaetingReviewStats = [
 export default sulgaetingReviewStats;
 
 
+

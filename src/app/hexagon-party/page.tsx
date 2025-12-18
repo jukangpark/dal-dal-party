@@ -4,8 +4,6 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Banner from "../components/Banner";
-import IntroSection from "../components/IntroSection";
-import CostSection from "../components/CostSection";
 import ReviewsSection from "../components/ReviewsSection";
 import GallerySection from "../components/GallerySection";
 import CTASection from "../components/CTASection";
@@ -122,27 +120,78 @@ export default function HexagonPartyPage() {
             transition={{ duration: 0.8 }}
             className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl mb-6 sm:mb-8 border border-blue-100"
           >
-            <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 mb-4">
-              <div className="text-2xl sm:text-4xl md:text-5xl flex-shrink-0 pt-1">💭</div>
-              <div className="flex-1 w-full sm:w-auto">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
-                  이런 분들을 위해 준비했어요
-                </h2>
+            <div>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-[#0e6d62]">
+                이런 분들을 위해 준비했어요
+              </h2>
+              
+              {/* 보통의 파티 섹션 */}
+              <div className="mb-6 sm:mb-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-4">보통의 파티</h3>
                 <div className="space-y-3 sm:space-y-4">
-                  <div className="p-4 sm:p-5 bg-gradient-to-r from-red-50 to-red-100 rounded-xl border-2 border-red-300 shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl sm:text-3xl flex-shrink-0">❌</span>
-                      <p className="text-base sm:text-lg text-gray-800 leading-relaxed">
-                        <span className="font-bold text-red-600">보통의 파티:</span> 누구나 올 수 있지만 맘에 드는 사람은 없어서 시간만 보내는 파티, 게임 위주 진행으로 기 빨렸던 경험 있으신 분들
-                      </p>
+                  {/* 참여자1 말풍선 */}
+                  <div className="flex items-center gap-4 sm:gap-5">
+                    <div className="text-lg sm:text-xl font-semibold text-gray-700 flex-shrink-0">👤</div>
+                    <div className="relative flex-1">
+                      <div className="bg-gray-50 rounded-2xl sm:rounded-3xl px-4 sm:px-5 py-3 sm:py-4 shadow-md border border-gray-200 relative">
+                        <p className="text-sm sm:text-base text-gray-800 leading-relaxed">
+                          사람은 많은데 맘에 드는 사람이 없어요. ㅠㅠ
+                        </p>
+                        {/* 말풍선 꼬리 */}
+                        <div className="absolute -left-3 top-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[12px] border-r-gray-200 border-b-[12px] border-b-transparent"></div>
+                        <div className="absolute -left-2 top-4 w-0 h-0 border-t-[10px] border-t-transparent border-r-[10px] border-r-gray-50 border-b-[10px] border-b-transparent"></div>
+                      </div>
                     </div>
                   </div>
-                  <div className="p-4 sm:p-5 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl border-2 border-orange-300 shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl sm:text-3xl flex-shrink-0">⚠️</span>
-                      <p className="text-base sm:text-lg text-gray-800 leading-relaxed">
-                        <span className="font-bold text-orange-600">로테이션 소개팅:</span> 1인당 대화 시간은 너무 짧고 매칭이 안된다면 어떤 기회도 없는 자리에 아쉬웠던 분들
-                      </p>
+                  
+                  {/* 참여자2 말풍선 */}
+                  <div className="flex items-center gap-4 sm:gap-5">
+                    <div className="text-lg sm:text-xl font-semibold text-gray-700 flex-shrink-0">👤</div>
+                    <div className="relative flex-1">
+                      <div className="bg-gray-50 rounded-2xl sm:rounded-3xl px-4 sm:px-5 py-3 sm:py-4 shadow-md border border-gray-200 relative">
+                        <p className="text-sm sm:text-base text-gray-800 leading-relaxed">
+                          게임이 너무 많아서 기빨려요..
+                        </p>
+                        {/* 말풍선 꼬리 */}
+                        <div className="absolute -left-3 top-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[12px] border-r-gray-200 border-b-[12px] border-b-transparent"></div>
+                        <div className="absolute -left-2 top-4 w-0 h-0 border-t-[10px] border-t-transparent border-r-[10px] border-r-gray-50 border-b-[10px] border-b-transparent"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 로테이션 소개팅 섹션 */}
+              <div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-4">로테이션 소개팅</h3>
+                <div className="space-y-3 sm:space-y-4">
+                  {/* 참여자1 말풍선 */}
+                  <div className="flex items-center gap-4 sm:gap-5">
+                    <span className="text-lg sm:text-xl font-semibold text-gray-700 flex-shrink-0">👤</span>
+                    <div className="relative flex-1">
+                      <div className="bg-gray-50 rounded-2xl sm:rounded-3xl px-4 sm:px-5 py-3 sm:py-4 shadow-md border border-gray-200 relative">
+                        <p className="text-sm sm:text-base text-gray-800 leading-relaxed">
+                          대화 시간이 정말 짧아서 정신 없어요.
+                        </p>
+                        {/* 말풍선 꼬리 */}
+                        <div className="absolute -left-3 top-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[12px] border-r-gray-200 border-b-[12px] border-b-transparent"></div>
+                        <div className="absolute -left-2 top-4 w-0 h-0 border-t-[10px] border-t-transparent border-r-[10px] border-r-gray-50 border-b-[10px] border-b-transparent"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* 참여자2 말풍선 */}
+                  <div className="flex items-center gap-4 sm:gap-5">
+                    <span className="text-lg sm:text-xl font-semibold text-gray-700 flex-shrink-0">👤</span>
+                    <div className="relative flex-1">
+                      <div className="bg-gray-50 rounded-2xl sm:rounded-3xl px-4 sm:px-5 py-3 sm:py-4 shadow-md border border-gray-200 relative">
+                        <p className="text-sm sm:text-base text-gray-800 leading-relaxed">
+                          매칭 안되면 허무해요..
+                        </p>
+                        {/* 말풍선 꼬리 */}
+                        <div className="absolute -left-3 top-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[12px] border-r-gray-200 border-b-[12px] border-b-transparent"></div>
+                        <div className="absolute -left-2 top-4 w-0 h-0 border-t-[10px] border-t-transparent border-r-[10px] border-r-gray-50 border-b-[10px] border-b-transparent"></div>
+                      </div>
                     </div>
                   </div>
                 </div>

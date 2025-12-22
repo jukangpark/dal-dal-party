@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import CTASection from "./components/CTASection";
 
 // 숫자 카운트업 컴포넌트
@@ -23,6 +23,18 @@ function CountUpNumber({ value }: { value: number }) {
 
 export default function Home() {
   const router = useRouter();
+  
+  // 모바일 환경 감지 (최초 한 번만 체크)
+  // SSR과 클라이언트 간 hydration 에러 방지를 위해 초기값은 false로 설정
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useLayoutEffect(() => {
+    // 클라이언트에서만 실행되어 hydration 에러 방지
+    // useLayoutEffect를 사용하여 첫 렌더링 시 깜빡임 최소화
+    // 이 패턴은 SSR과 클라이언트 간 hydration 에러를 방지하기 위해 필요합니다
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setIsMobile(window.innerWidth < 768); // md 브레이크포인트
+  }, []);
 
   const partyTypes = [
     {
@@ -115,9 +127,9 @@ export default function Home() {
         {/* 오버레이 */}
         <div className="absolute inset-0 bg-black/70" />
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
           className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto"
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
@@ -127,9 +139,9 @@ export default function Home() {
             검증된 참가자들과 함께하는 <br/><b>프리미엄 소개팅 & 파티</b>
           </p>
           <motion.button
-            initial={{ opacity: 0, y: 20 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.3 }}
             onClick={() => router.push("/reservation")}
             className="px-8 sm:px-12 py-3 sm:py-4 bg-white text-[#0e6d62] font-bold text-lg sm:text-xl rounded-full hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"
           >
@@ -156,10 +168,10 @@ export default function Home() {
       <section className="py-6 sm:py-12 md:py-12 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 text-[#0e6d62]">
@@ -177,10 +189,10 @@ export default function Home() {
       <section className="py-8 sm:py-12 md:py-16 lg:py-20 px-3 sm:px-4 md:px-6 bg-gray-50">
         <div className="container mx-auto max-w-7xl">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-[#0e6d62] px-2"
           >
             세 가지 파티, 하나의 목표
@@ -190,10 +202,15 @@ export default function Home() {
             {partyTypes.map((party, index) => (
               <motion.div
                 key={party.path}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                {...(isMobile 
+                  ? { animate: { opacity: 1, y: 0 } }
+                  : { 
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true }
+                    }
+                )}
+                transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: index * 0.2 }}
                 className="bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer flex flex-col h-full"
                 onClick={() => router.push(party.path)}
               >
@@ -256,26 +273,26 @@ export default function Home() {
         
         <div className="container mx-auto max-w-7xl relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
             className="text-center mb-12 sm:mb-16 md:mb-20"
           >
             <motion.h2 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              whileInView={isMobile ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={isMobile ? { duration: 0 } : { duration: 0.6 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-[#0e6d62] via-[#059669] to-[#047857] bg-clip-text text-transparent"
             >
               누적 참가자수
             </motion.h2>
             <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
+              whileInView={isMobile ? { opacity: 1 } : { opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.2 }}
               className="text-base sm:text-lg md:text-xl text-gray-600"
             >
               지금까지 함께한 모든 순간들
@@ -322,16 +339,16 @@ export default function Home() {
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                initial={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ 
+                transition={isMobile ? { duration: 0 } : { 
                   duration: 0.6, 
                   delay: index * 0.1,
                   type: "spring",
                   stiffness: 100
                 }}
-                whileHover={{ 
+                whileHover={isMobile ? {} : { 
                   y: -8,
                   scale: 1.02,
                   transition: { duration: 0.3 }
@@ -346,10 +363,10 @@ export default function Home() {
                   {/* 아이콘 */}
                   <div className="relative z-10 text-center mb-4 sm:mb-6">
                     <motion.div
-                      initial={{ scale: 0, rotate: -180 }}
-                      whileInView={{ scale: 1, rotate: 0 }}
+                      initial={isMobile ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
+                      whileInView={isMobile ? { scale: 1, rotate: 0 } : { scale: 1, rotate: 0 }}
                       viewport={{ once: true }}
-                      transition={{ 
+                      transition={isMobile ? { duration: 0 } : { 
                         duration: 0.5, 
                         delay: index * 0.1 + 0.2,
                         type: "spring",
@@ -381,10 +398,10 @@ export default function Home() {
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 text-[#0e6d62]">
@@ -417,10 +434,10 @@ export default function Home() {
             ].map((value, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: index * 0.1 }}
                 className="text-center p-6 sm:p-8 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
               >
                 <div className="text-5xl sm:text-6xl mb-4 sm:mb-6">{value.icon}</div>
@@ -446,10 +463,10 @@ export default function Home() {
         
         <div className="container mx-auto max-w-6xl relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 text-[#0e6d62]">
@@ -524,11 +541,11 @@ export default function Home() {
             ].map((process, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                whileHover={{ 
+                transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: index * 0.2 }}
+                whileHover={isMobile ? {} : { 
                   y: -8,
                   scale: 1.02,
                   transition: { duration: 0.3 }
@@ -549,10 +566,10 @@ export default function Home() {
                   {/* 아이콘 */}
                   <div className="text-center mb-4 sm:mb-6">
                     <motion.div
-                      initial={{ scale: 0, rotate: -180 }}
-                      whileInView={{ scale: 1, rotate: 0 }}
+                      initial={isMobile ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
+                      whileInView={isMobile ? { scale: 1, rotate: 0 } : { scale: 1, rotate: 0 }}
                       viewport={{ once: true }}
-                      transition={{ 
+                      transition={isMobile ? { duration: 0 } : { 
                         duration: 0.5, 
                         delay: index * 0.2 + 0.2,
                         type: "spring",
@@ -584,10 +601,10 @@ export default function Home() {
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-5xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
           >
             <div className="bg-white border-2 border-gray-200 rounded-lg shadow-sm">
               {/* 헤더 */}
@@ -643,10 +660,10 @@ export default function Home() {
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-5xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
           >
             <div className="bg-white border-2 border-gray-200 rounded-lg shadow-sm">
               {/* 헤더 */}

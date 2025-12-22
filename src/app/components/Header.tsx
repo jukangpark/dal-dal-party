@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
 const Header = () => {
@@ -17,14 +17,22 @@ const Header = () => {
     } else {
       // 다른 페이지면 홈으로 이동
       router.push("/");
+      window.scrollTo({ top: 0, behavior: "instant" });
     }
   };
 
   // 페이지로 이동
   const handlePageNavigation = (path: string) => {
-    router.push(path);
     setIsMobileMenuOpen(false);
+    router.push(path);
+    // 페이지 이동 시 스크롤 초기화
+    window.scrollTo({ top: 0, behavior: "instant" });
   };
+
+  // pathname 변경 시 스크롤 초기화 (추가 보장)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
 
   // 페이지 네비게이션 메뉴
   const pageMenuItems = [

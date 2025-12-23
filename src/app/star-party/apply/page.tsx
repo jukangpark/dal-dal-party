@@ -491,14 +491,17 @@ const ApplyPage = () => {
                   생년월일 *
                 </label>
                 <input
-                  type="number"
+                  type="date"
                   name="birthDate"
                   value={formData.birthDate}
-                  onChange={handleInputChange}
+                  onChange={(e) => {
+                    setFormData(prev => ({
+                      ...prev,
+                      birthDate: e.target.value,
+                    }));
+                  }}
                   className="w-full px-3 md:px-4 py-2 rounded text-sm md:text-base text-gray-900 border border-gray-300"
-                  placeholder="ex. 940220"
                 />
-                <p className="text-xs text-gray-600 mt-1">예시: 940220</p>
                 {errors.birthDate && <p className="text-red-500 text-sm mt-1">{errors.birthDate}</p>}
               </div>
 

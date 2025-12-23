@@ -124,9 +124,7 @@ const ApplyPage = () => {
     }
 
     if (!formData.birthYear) {
-      newErrors.birthYear = "생년월일을 입력해주세요.";
-    } else if (!/^\d{6}$/.test(formData.birthYear)) {
-      newErrors.birthYear = "생년월일을 6자리 숫자로 입력해주세요. (예: 960209)";
+      newErrors.birthYear = "생년월일을 선택해주세요.";
     }
 
     if (!formData.job) {
@@ -422,25 +420,18 @@ const ApplyPage = () => {
               </div>
 
               <div>
-                <label className="block mb-1.5 md:mb-2 text-sm md:text-base font-semibold text-[#0e6d62]">📍 생년월일 (예: 960209)*</label>
+                <label className="block mb-1.5 md:mb-2 text-sm md:text-base font-semibold text-[#0e6d62]">📍 생년월일 *</label>
                 <input
-                  type="text"
+                  type="date"
                   name="birthYear"
                   value={formData.birthYear}
                   onChange={(e) => {
-                    // 숫자만 입력 가능하도록 제한
-                    const value = e.target.value.replace(/\D/g, '');
-                    // 최대 6자리까지만 입력
-                    if (value.length <= 6) {
-                      setFormData(prev => ({
-                        ...prev,
-                        birthYear: value,
-                      }));
-                    }
+                    setFormData(prev => ({
+                      ...prev,
+                      birthYear: e.target.value,
+                    }));
                   }}
                   className="w-full px-3 md:px-4 py-2 rounded text-sm md:text-base text-gray-900 border border-gray-300"
-                  placeholder="예: 960209"
-                  maxLength={6}
                 />
                 {errors.birthYear && <p className="text-red-500 text-sm mt-1">{errors.birthYear}</p>}
               </div>

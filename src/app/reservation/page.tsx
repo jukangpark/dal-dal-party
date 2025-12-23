@@ -23,12 +23,28 @@ export default function ReservationPage() {
   const [partyDatesByMonth, setPartyDatesByMonth] = useState<Record<string, PartyInfo[]>>({});
   const [loadingParties, setLoadingParties] = useState(true);
 
-  // 생년월일을 "96년생" 형식으로 변환 (앞 2자리만 추출)
+  // 생년월일을 "96년생" 형식으로 변환
   const formatBirthYear = (birthDate: string | number | undefined, birthYear: string | number | undefined): string => {
     const value = birthDate || birthYear;
     if (!value) return '';
     
     const str = String(value).trim();
+    
+    // YYYY-MM-DD 형식 또는 ISO 8601 형식인 경우 (예: "2000-01-15" 또는 "2000-06-01T15:00:00.000Z")
+    // 앞 4자리가 연도인 경우
+    const yearMatch = str.match(/^(\d{4})/);
+    if (yearMatch) {
+      const year = yearMatch[1]; // 4자리 연도
+      const lastTwoDigits = year.slice(-2); // 마지막 2자리
+      return `${lastTwoDigits}년생`;
+    }
+    
+    // YYMMDD 형식인 경우 (예: "960209") - 기존 호환성
+    if (str.length === 6 && /^\d{6}$/.test(str)) {
+      return `${str.substring(0, 2)}년생`;
+    }
+    
+    // 기타 형식: 앞 2자리만 사용 (기존 로직 유지)
     if (str.length >= 2) {
       return `${str.substring(0, 2)}년생`;
     }

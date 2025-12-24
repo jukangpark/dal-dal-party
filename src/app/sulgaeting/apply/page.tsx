@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, Suspense, useRef } from "react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 
@@ -50,6 +50,18 @@ const ApplyPage = () => {
     personalPhotos: [],
     jobProofPhotos: [],
   });
+
+  // 섹션별 ref (에러 발생 시 스크롤용)
+  const privacySectionRef = useRef<HTMLDivElement | null>(null);
+  const thirdPartySectionRef = useRef<HTMLDivElement | null>(null);
+  const basicInfoSectionRef = useRef<HTMLDivElement | null>(null);
+  const lookalikeSectionRef = useRef<HTMLDivElement | null>(null);
+  const idPhotoSectionRef = useRef<HTMLDivElement | null>(null);
+  const personalPhotosSectionRef = useRef<HTMLDivElement | null>(null);
+  const jobProofSectionRef = useRef<HTMLDivElement | null>(null);
+  const visitRouteSectionRef = useRef<HTMLDivElement | null>(null);
+  const refundSectionRef = useRef<HTMLDivElement | null>(null);
+  const freePartySectionRef = useRef<HTMLDivElement | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -210,13 +222,123 @@ const ApplyPage = () => {
     if (formData.refundAgreement !== "agree") {
       newErrors.refundAgreement = "환불규정 및 유의사항에 동의해주세요.";
     }
-
+  
     if (!formData.freePartyAgreement) {
       newErrors.freePartyAgreement = "무료파티 초대 참여 의향을 선택해주세요.";
     }
-
+  
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return newErrors;
+  };
+
+  const scrollToFirstError = (validationErrors: Record<string, string>) => {
+    const fieldOrder: string[] = [
+      "privacyAgreement",
+      "thirdPartyAgreement",
+      "name",
+      "gender",
+      "birthDate",
+      "job",
+      "favoriteFood",
+      "height",
+      "contact",
+      "lookalike",
+      "idPhoto",
+      "personalPhotos",
+      "jobProofPhotos",
+      "visitRoute",
+      "visitRouteOther",
+      "refundAgreement",
+      "freePartyAgreement",
+    ];
+
+    const getSectionRefByField = (field: string) => {
+      if (field === "privacyAgreement") return privacySectionRef;
+      if (field === "thirdPartyAgreement") return thirdPartySectionRef;
+      if (
+        field === "name" ||
+        field === "gender" ||
+        field === "birthDate" ||
+        field === "job" ||
+        field === "favoriteFood" ||
+        field === "height" ||
+        field === "contact"
+      ) {
+        return basicInfoSectionRef;
+      }
+      if (field === "lookalike") return lookalikeSectionRef;
+      if (field === "idPhoto") return idPhotoSectionRef;
+      if (field === "personalPhotos") return personalPhotosSectionRef;
+      if (field === "jobProofPhotos") return jobProofSectionRef;
+      if (field === "visitRoute" || field === "visitRouteOther") return visitRouteSectionRef;
+      if (field === "refundAgreement") return refundSectionRef;
+      if (field === "freePartyAgreement") return freePartySectionRef;
+      return null;
+    };
+
+    for (const field of fieldOrder) {
+      if (validationErrors[field]) {
+        const sectionRef = getSectionRefByField(field);
+        if (sectionRef?.current) {
+          sectionRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        break;
+      }
+    }
+  };
+
+  // Discord 웹훅으로 신청 현황 전송
+  const sendToDiscord = async (data: typeof formData) => {
+    try {
+      const visitRouteText = data.visitRoute === "other" 
+        ? `기타: ${data.visitRouteOther}` 
+        : data.visitRoute === "instagram" ? "인스타" 
+        : data.visitRoute === "blog" ? "블로그"
+        : data.visitRoute === "friend" ? "지인소개"
+        : data.visitRoute === "moram" ? "모람"
+        : data.visitRoute;
+
+      const genderText = data.gender === "male" ? "남성" : data.gender === "female" ? "여성" : data.gender;
+
+      const freePartyText = data.freePartyAgreement === "possible" ? "참여 가능" : data.freePartyAgreement === "impossible" ? "참여 불가능" : "-";
+
+      const message = {
+        content: "🍷 **술개팅 신청 현황**",
+        embeds: [{
+          title: "새로운 신청이 접수되었습니다",
+          color: 0x0e6d62,
+          fields: [
+            { name: "성함", value: data.name || "-", inline: true },
+            { name: "성별", value: genderText || "-", inline: true },
+            { name: "생년월일", value: data.birthDate || "-", inline: true },
+            { name: "직업", value: data.job || "-", inline: true },
+            { name: "키", value: data.height ? `${data.height}cm` : "-", inline: true },
+            { name: "좋아하는 안주", value: data.favoriteFood || "-", inline: true },
+            { name: "연락처", value: data.contact || "-", inline: true },
+            { name: "닮은 연예인", value: data.lookalike || "-", inline: true },
+            { name: "방문 경로", value: visitRouteText || "-", inline: true },
+            { name: "무료파티 참여 의향", value: freePartyText, inline: true },
+          ],
+          timestamp: new Date().toISOString(),
+        }],
+      };
+
+      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_SULGAETING;
+      if (!webhookUrl) {
+        console.error("Discord 웹훅 URL이 설정되지 않았습니다.");
+        return;
+      }
+
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
+      });
+    } catch (error) {
+      console.error("Discord 웹훅 전송 실패:", error);
+    }
   };
 
   // Supabase에 이미지 업로드하는 함수 (서버 사이드 API Route 사용)
@@ -249,86 +371,94 @@ const ApplyPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (validateForm() && !isSubmitting) {
-      setIsSubmitting(true);
+    if (isSubmitting) return;
+
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      scrollToFirstError(validationErrors);
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      // ID 생성
+      const id = Date.now().toString();
       
-      try {
-        // ID 생성
-        const id = Date.now().toString();
-        
-        // 1단계: 이미지를 Supabase에 업로드하고 URL 가져오기
-        let idPhotoUrl = '';
-        let personalPhotoUrls: string[] = [];
-        let jobProofPhotoUrls: string[] = [];
-        
-        // 신분증 사진 업로드
-        if (formData.idPhoto) {
-          const path = `${id}_id_${formData.idPhoto.name}`;
-          const url = await uploadToSupabase(formData.idPhoto, path, id);
-          if (url) idPhotoUrl = url;
-        }
-        
-        // 본인 사진 업로드
-        if (formData.personalPhotos.length > 0) {
-          const uploadPromises = formData.personalPhotos.map(async (photo, index) => {
-            const path = `${id}_personal_${index + 1}_${photo.name}`;
-            return await uploadToSupabase(photo, path, id);
-          });
-          const urls = await Promise.all(uploadPromises);
-          personalPhotoUrls = urls.filter((url): url is string => url !== null);
-        }
-        
-        // 직업 증명 서류 업로드
-        if (formData.jobProofPhotos.length > 0) {
-          const uploadPromises = formData.jobProofPhotos.map(async (photo, index) => {
-            const path = `${id}_jobproof_${index + 1}_${photo.name}`;
-            return await uploadToSupabase(photo, path, id);
-          });
-          const urls = await Promise.all(uploadPromises);
-          jobProofPhotoUrls = urls.filter((url): url is string => url !== null);
-        }
-        
-        // 2단계: API로 데이터 전송 (URL만 전송)
-        const response = await fetch('/api/applications', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            partyType: 'sulgaeting',
-            date: dateFromQuery,
-            name: formData.name,
-            gender: formData.gender,
-            birthDate: formData.birthDate,
-            job: formData.job,
-            favoriteFood: formData.favoriteFood,
-            height: formData.height,
-            contact: formData.contact,
-            lookalike: formData.lookalike,
-            // 이미지 URL만 전송
-            idPhotoUrl: idPhotoUrl,
-            personalPhotoUrls: personalPhotoUrls,
-            jobProofPhotoUrls: jobProofPhotoUrls,
-            visitRoute: formData.visitRoute,
-            visitRouteOther: formData.visitRouteOther,
-            refundAgreement: formData.refundAgreement,
-            freePartyAgreement: formData.freePartyAgreement,
-          }),
+      // 1단계: 이미지를 Supabase에 업로드하고 URL 가져오기
+      let idPhotoUrl = '';
+      let personalPhotoUrls: string[] = [];
+      let jobProofPhotoUrls: string[] = [];
+      
+      // 신분증 사진 업로드
+      if (formData.idPhoto) {
+        const path = `${id}_id_${formData.idPhoto.name}`;
+        const url = await uploadToSupabase(formData.idPhoto, path, id);
+        if (url) idPhotoUrl = url;
+      }
+      
+      // 본인 사진 업로드
+      if (formData.personalPhotos.length > 0) {
+        const uploadPromises = formData.personalPhotos.map(async (photo, index) => {
+          const path = `${id}_personal_${index + 1}_${photo.name}`;
+          return await uploadToSupabase(photo, path, id);
         });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-          alert("신청이 완료되었습니다! 운영진 심사 후 결과를 안내드리겠습니다.");
-          window.location.reload();
-        } else {
-          alert(`신청 중 오류가 발생했습니다: ${result.error || '알 수 없는 오류'}`);
-          setIsSubmitting(false);
-        }
-      } catch (error) {
-        alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+        const urls = await Promise.all(uploadPromises);
+        personalPhotoUrls = urls.filter((url): url is string => url !== null);
+      }
+      
+      // 직업 증명 서류 업로드
+      if (formData.jobProofPhotos.length > 0) {
+        const uploadPromises = formData.jobProofPhotos.map(async (photo, index) => {
+          const path = `${id}_jobproof_${index + 1}_${photo.name}`;
+          return await uploadToSupabase(photo, path, id);
+        });
+        const urls = await Promise.all(uploadPromises);
+        jobProofPhotoUrls = urls.filter((url): url is string => url !== null);
+      }
+      
+      // 2단계: API로 데이터 전송 (URL만 전송)
+      const response = await fetch('/api/applications', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          partyType: 'sulgaeting',
+          date: dateFromQuery,
+          name: formData.name,
+          gender: formData.gender,
+          birthDate: formData.birthDate,
+          job: formData.job,
+          favoriteFood: formData.favoriteFood,
+          height: formData.height,
+          contact: formData.contact,
+          lookalike: formData.lookalike,
+          // 이미지 URL만 전송
+          idPhotoUrl: idPhotoUrl,
+          personalPhotoUrls: personalPhotoUrls,
+          jobProofPhotoUrls: jobProofPhotoUrls,
+          visitRoute: formData.visitRoute,
+          visitRouteOther: formData.visitRouteOther,
+          refundAgreement: formData.refundAgreement,
+          freePartyAgreement: formData.freePartyAgreement,
+        }),
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        // Discord 웹훅으로 신청 현황 전송
+        await sendToDiscord(formData);
+        alert(`신청이 완료되었습니다! 입력해주신 연락처(${formData.contact})로 곧 연락드리겠습니다.`);
+        window.location.reload();
+      } else {
+        alert(`신청 중 오류가 발생했습니다: ${result.error || '알 수 없는 오류'}`);
         setIsSubmitting(false);
       }
+    } catch (error) {
+      alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+      setIsSubmitting(false);
     }
   };
 

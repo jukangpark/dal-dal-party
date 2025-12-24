@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, Suspense, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -56,6 +56,18 @@ const ApplyPage = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [photoPreviews, setPhotoPreviews] = useState<string[]>([]);
+
+  // 섹션별 ref (에러 발생 시 스크롤용)
+  const privacySectionRef = useRef<HTMLDivElement | null>(null);
+  const basicInfoSectionRef = useRef<HTMLDivElement | null>(null);
+  const mbtiSectionRef = useRef<HTMLDivElement | null>(null);
+  const lookalikeSectionRef = useRef<HTMLDivElement | null>(null);
+  const charmPointsSectionRef = useRef<HTMLDivElement | null>(null);
+  const photosSectionRef = useRef<HTMLDivElement | null>(null);
+  const visitRouteSectionRef = useRef<HTMLDivElement | null>(null);
+  const photoAgreementSectionRef = useRef<HTMLDivElement | null>(null);
+  const rotationAgreementSectionRef = useRef<HTMLDivElement | null>(null);
+  const refundSectionRef = useRef<HTMLDivElement | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -177,7 +189,129 @@ const ApplyPage = () => {
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return newErrors;
+  };
+
+  const scrollToFirstError = (validationErrors: Record<string, string>) => {
+    const fieldOrder: string[] = [
+      "privacyAgreement",
+      "name",
+      "gender",
+      "birthYear",
+      "job",
+      "residence",
+      "contact",
+      "mbti",
+      "lookalike",
+      "charmPoints",
+      "photos",
+      "visitRoute",
+      "visitRouteOther",
+      "photoAgreement",
+      "rotationAgreement",
+      "refundAgreement",
+    ];
+
+    const getSectionRefByField = (field: string) => {
+      if (field === "privacyAgreement") return privacySectionRef;
+      if (
+        field === "name" ||
+        field === "gender" ||
+        field === "birthYear" ||
+        field === "job" ||
+        field === "residence" ||
+        field === "contact"
+      ) {
+        return basicInfoSectionRef;
+      }
+      if (field === "mbti") return mbtiSectionRef;
+      if (field === "lookalike") return lookalikeSectionRef;
+      if (field === "charmPoints") return charmPointsSectionRef;
+      if (field === "photos") return photosSectionRef;
+      if (field === "visitRoute" || field === "visitRouteOther") return visitRouteSectionRef;
+      if (field === "photoAgreement") return photoAgreementSectionRef;
+      if (field === "rotationAgreement") return rotationAgreementSectionRef;
+      if (field === "refundAgreement") return refundSectionRef;
+      return null;
+    };
+
+    for (const field of fieldOrder) {
+      if (validationErrors[field]) {
+        const sectionRef = getSectionRefByField(field);
+        if (sectionRef?.current) {
+          sectionRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        break;
+      }
+    }
+  };
+
+  // Discord 웹훅으로 신청 현황 전송
+  const sendToDiscord = async (data: typeof formData) => {
+    try {
+      const visitRouteText = data.visitRoute === "other" 
+        ? `기타: ${data.visitRouteOther}` 
+        : data.visitRoute === "instagram" ? "인스타" 
+        : data.visitRoute === "blog" ? "블로그"
+        : data.visitRoute === "friend" ? "지인소개"
+        : data.visitRoute;
+
+      const genderText = data.gender === "male" ? "남성" : data.gender === "female" ? "여성" : data.gender;
+
+      const residenceText = data.residence === "gwangju" ? "광주 내" : data.residence === "nearby" ? "근처 지역" : data.residence;
+
+      const charmPointsArray = Object.entries(data.charmPoints)
+        .filter(([, value]) => value)
+        .map(([key]) => {
+          if (key === "appearance") return "외모";
+          if (key === "height") return "키(몸매)";
+          if (key === "wealth") return "재력";
+          if (key === "job") return "직업";
+          return key;
+        });
+
+      const photoAgreementText = data.photoAgreement === "yes" ? "예 (동의)" : data.photoAgreement === "no" ? "아니오" : "-";
+      const rotationAgreementText = data.rotationAgreement === "yes" ? "예, 가능합니다" : data.rotationAgreement === "no" ? "아니요" : "-";
+
+      const message = {
+        content: "🎉 **육각형 파티 신청 현황**",
+        embeds: [{
+          title: "새로운 신청이 접수되었습니다",
+          color: 0x0e6d62,
+          fields: [
+            { name: "이름", value: data.name || "-", inline: true },
+            { name: "성별", value: genderText || "-", inline: true },
+            { name: "생년월일", value: data.birthYear || "-", inline: true },
+            { name: "직업", value: data.job || "-", inline: true },
+            { name: "거주지", value: residenceText || "-", inline: true },
+            { name: "연락처", value: data.contact || "-", inline: true },
+            { name: "MBTI", value: data.mbti || "-", inline: true },
+            { name: "닮은꼴", value: data.lookalike || "-", inline: true },
+            { name: "매력 포인트", value: charmPointsArray.length > 0 ? charmPointsArray.join(", ") : "-", inline: false },
+            { name: "방문 경로", value: visitRouteText || "-", inline: true },
+            { name: "사진 촬영 동의", value: photoAgreementText, inline: true },
+            { name: "1대1 로테이션 참여 의향", value: rotationAgreementText, inline: true },
+          ],
+          timestamp: new Date().toISOString(),
+        }],
+      };
+
+      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_HEXAGON_PARTY;
+      if (!webhookUrl) {
+        console.error("Discord 웹훅 URL이 설정되지 않았습니다.");
+        return;
+      }
+
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
+      });
+    } catch (error) {
+      console.error("Discord 웹훅 전송 실패:", error);
+    }
   };
 
   // Supabase에 이미지 업로드하는 함수 (서버 사이드 API Route 사용)
@@ -210,8 +344,15 @@ const ApplyPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (validateForm() && !isSubmitting) {
-      setIsSubmitting(true);
+    if (isSubmitting) return;
+
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      scrollToFirstError(validationErrors);
+      return;
+    }
+
+    setIsSubmitting(true);
       
       try {
         // ID 생성
@@ -266,16 +407,17 @@ const ApplyPage = () => {
         const result = await response.json();
         
         if (result.success) {
-          alert("신청이 완료되었습니다! 운영진 심사 후 결과를 안내드리겠습니다.");
+          // Discord 웹훅으로 신청 현황 전송
+          await sendToDiscord(formData);
+          alert(`신청이 완료되었습니다! 입력해주신 연락처(${formData.contact})로 곧 연락드리겠습니다.`);
           window.location.reload();
         } else {
           alert(`신청 중 오류가 발생했습니다: ${result.error || '알 수 없는 오류'}`);
           setIsSubmitting(false);
         }
-      } catch (error) {
-        alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
-        setIsSubmitting(false);
-      }
+    } catch (error) {
+      alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+      setIsSubmitting(false);
     }
   };
 
@@ -363,7 +505,7 @@ const ApplyPage = () => {
 
           <form onSubmit={handleSubmit} className="space-y-4 md:space-y-8">
             {/* 개인정보 수집 및 이용 동의 */}
-            <div className="bg-gray-50 rounded-lg p-4 md:p-6 border border-gray-200">
+            <div ref={privacySectionRef} className={`bg-gray-50 rounded-lg p-4 md:p-6 border ${errors.privacyAgreement ? 'border-red-500' : 'border-gray-200'}`}>
               <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#0e6d62]">
                 ⚠️ 개인정보 수집 및 이용 동의
               </h2>
@@ -388,7 +530,11 @@ const ApplyPage = () => {
             </div>
 
             {/* 기본 정보 */}
-            <div className="bg-gray-50 rounded-lg p-4 md:p-6 border border-gray-200 space-y-3 md:space-y-4">
+            <div ref={basicInfoSectionRef} className={`bg-gray-50 rounded-lg p-4 md:p-6 border space-y-3 md:space-y-4 ${
+              errors.name || errors.gender || errors.birthYear || errors.job || errors.residence || errors.contact
+                ? 'border-red-500'
+                : 'border-gray-200'
+            }`}>
               <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#0e6d62]">기본 정보</h2>
               
               <div>
@@ -487,7 +633,7 @@ const ApplyPage = () => {
             </div>
 
             {/* MBTI */}
-            <div className="bg-gray-50 rounded-lg p-4 md:p-6 border border-gray-200">
+            <div ref={mbtiSectionRef} className={`bg-gray-50 rounded-lg p-4 md:p-6 border ${errors.mbti ? 'border-red-500' : 'border-gray-200'}`}>
               <label className="block mb-1.5 md:mb-2 text-sm md:text-base font-semibold text-[#0e6d62]">📍 MBTI *</label>
               <select
                 name="mbti"
@@ -504,7 +650,7 @@ const ApplyPage = () => {
             </div>
 
             {/* 닮은꼴 명찰 */}
-            <div className="bg-gray-50 rounded-lg p-4 md:p-6 border border-gray-200">
+            <div ref={lookalikeSectionRef} className={`bg-gray-50 rounded-lg p-4 md:p-6 border ${errors.lookalike ? 'border-red-500' : 'border-gray-200'}`}>
               <h2 className="text-lg md:text-xl font-bold mb-2 text-[#0e6d62]">
                 📍 닮은꼴 명찰 작성
               </h2>
@@ -528,7 +674,7 @@ const ApplyPage = () => {
             </div>
 
             {/* 매력 포인트 */}
-            <div className="bg-gray-50 rounded-lg p-4 md:p-6 border border-gray-200">
+            <div ref={charmPointsSectionRef} className={`bg-gray-50 rounded-lg p-4 md:p-6 border ${errors.charmPoints ? 'border-red-500' : 'border-gray-200'}`}>
               <h2 className="text-lg md:text-xl font-bold mb-2 text-[#0e6d62]">
                 📍 매력 포인트 체크
               </h2>
@@ -593,7 +739,7 @@ const ApplyPage = () => {
             </div>
 
             {/* 사진 업로드 */}
-            <div className="bg-gray-50 rounded-lg p-4 md:p-6 border border-gray-200">
+            <div ref={photosSectionRef} className={`bg-gray-50 rounded-lg p-4 md:p-6 border ${errors.photos ? 'border-red-500' : 'border-gray-200'}`}>
               <h2 className="text-lg md:text-xl font-bold mb-2 text-[#0e6d62]">
                 📍 사진 업로드
               </h2>
@@ -637,7 +783,7 @@ const ApplyPage = () => {
             </div>
 
             {/* 방문 경로 */}
-            <div className="bg-gray-50 rounded-lg p-4 md:p-6 border border-gray-200">
+            <div ref={visitRouteSectionRef} className={`bg-gray-50 rounded-lg p-4 md:p-6 border ${errors.visitRoute || errors.visitRouteOther ? 'border-red-500' : 'border-gray-200'}`}>
               <label className="block mb-1.5 md:mb-2 text-sm md:text-base font-semibold text-[#0e6d62]">방문 경로 *</label>
               <select
                 name="visitRoute"
@@ -666,7 +812,7 @@ const ApplyPage = () => {
             </div>
 
             {/* 사진 촬영 동의 */}
-            <div className="bg-gray-50 rounded-lg p-4 md:p-6 border border-gray-200">
+            <div ref={photoAgreementSectionRef} className={`bg-gray-50 rounded-lg p-4 md:p-6 border ${errors.photoAgreement ? 'border-red-500' : 'border-gray-200'}`}>
               <h2 className="text-lg md:text-xl font-bold mb-2 text-[#0e6d62]">
                 ⚠️ 행사 중 일부 현장 분위기(영상·사진) 촬영이 있을 수 있습니다.
               </h2>
@@ -706,7 +852,7 @@ const ApplyPage = () => {
             </div>
 
             {/* 1대1 로테이션 소개팅 */}
-            <div className="bg-gray-50 rounded-lg p-4 md:p-6 border border-gray-200">
+            <div ref={rotationAgreementSectionRef} className={`bg-gray-50 rounded-lg p-4 md:p-6 border ${errors.rotationAgreement ? 'border-red-500' : 'border-gray-200'}`}>
               <h2 className="text-lg md:text-xl font-bold mb-2 text-[#0e6d62]">
                 ⚠️ 추후 상위 20%를 위한 1대1 로테이션 소개팅에 참여 의향이 있으신가요?
               </h2>
@@ -740,7 +886,7 @@ const ApplyPage = () => {
             </div>
 
             {/* 환불규정 및 유의사항 */}
-            <div className="bg-gray-50 rounded-lg p-4 md:p-6 border border-gray-200">
+            <div ref={refundSectionRef} className={`bg-gray-50 rounded-lg p-4 md:p-6 border ${errors.refundAgreement ? 'border-red-500' : 'border-gray-200'}`}>
               <h2 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-[#0e6d62]">
                 ⚠️ 환불규정 및 유의사항에 대해 모두 이해하고 동의를 거부하실 수 있으나 참여가 불가능합니다.
               </h2>

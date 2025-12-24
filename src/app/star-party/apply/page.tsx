@@ -312,7 +312,7 @@ const ApplyPage = () => {
         }],
       };
 
-      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_STAR_PARTY;
+      const webhookUrl = process.env.NEXT_PUBLIC_STAR_PARTY_DISCORD_WEBHOOK_URL;
       if (!webhookUrl) {
         console.error("Discord 웹훅 URL이 설정되지 않았습니다.");
         return;

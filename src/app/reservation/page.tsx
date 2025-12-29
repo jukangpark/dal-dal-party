@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
@@ -22,6 +22,7 @@ export default function ReservationPage() {
   const [loadingStats, setLoadingStats] = useState(false);
   const [partyDatesByMonth, setPartyDatesByMonth] = useState<Record<string, PartyInfo[]>>({});
   const [loadingParties, setLoadingParties] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   // 생년월일을 "96년생" 형식으로 변환
   const formatBirthYear = (birthDate: string | number | undefined, birthYear: string | number | undefined): string => {
@@ -117,86 +118,87 @@ export default function ReservationPage() {
     category: "hexagon-party" | "sulgaeting" | "star-party";
   }
 
+  // 파티 일정 로드 함수 (재사용 가능)
+  const loadParties = useCallback(async () => {
+    setLoadingParties(true);
+    try {
+      const response = await fetch('/api/parties');
+      const data = await response.json();
+      const parties = data.parties || [];
+      
+      // 시트 데이터를 월별로 그룹화
+      const grouped: Record<string, PartyInfo[]> = {};
+      
+      parties.forEach((party: Record<string, string | number | undefined>) => {
+        let dateStr = String(party['날짜'] || '').trim();
+        if (!dateStr) return;
+        
+        // Date 객체의 문자열 표현인 경우 파싱 (예: "Fri Dec 19 2025 00:00:00 GMT+0900")
+        if (dateStr.includes('GMT') || dateStr.includes('Dec') || dateStr.includes('Jan') || dateStr.includes('Feb') || 
+            dateStr.includes('Mar') || dateStr.includes('Apr') || dateStr.includes('May') || dateStr.includes('Jun') ||
+            dateStr.includes('Jul') || dateStr.includes('Aug') || dateStr.includes('Sep') || dateStr.includes('Oct') ||
+            dateStr.includes('Nov')) {
+          try {
+            const dateObj = new Date(dateStr);
+            if (!isNaN(dateObj.getTime())) {
+              const year = dateObj.getFullYear();
+              const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+              const day = String(dateObj.getDate()).padStart(2, '0');
+              dateStr = `${year}-${month}-${day}`;
+            }
+          } catch {
+            // 파싱 실패 시 원본 문자열 사용
+          }
+        }
+        
+        // 날짜 파싱 (YYYY-MM-DD 형식)
+        const dateMatch = dateStr.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+        if (!dateMatch) {
+          return;
+        }
+        
+        const year = dateMatch[1];
+        const month = dateMatch[2].padStart(2, '0');
+        const day = parseInt(dateMatch[3], 10);
+        const monthKey = `${year}-${month}`;
+        
+        // PartyInfo 형식으로 변환
+        const statusValue = String(party['상태'] || '').trim();
+        const categoryValue = String(party['파티타입'] || 'sulgaeting').trim();
+        
+        const partyInfo: PartyInfo = {
+          date: day,
+          status: (statusValue === '모집중' || statusValue === '마감') ? statusValue as "모집중" | "마감" : '마감',
+          title: party['제목'] ? String(party['제목']) : undefined,
+          time: party['시간'] ? String(party['시간']) : undefined,
+          ageRange: party['나이범위'] ? String(party['나이범위']) : undefined,
+          maleCount: party['남성인원'] ? Number(party['남성인원']) : undefined,
+          femaleCount: party['여성인원'] ? Number(party['여성인원']) : undefined,
+          note: party['비고'] ? String(party['비고']) : undefined,
+          category: (categoryValue === 'hexagon-party' || categoryValue === 'sulgaeting' || categoryValue === 'star-party') 
+            ? categoryValue 
+            : 'sulgaeting',
+        };
+        
+        if (!grouped[monthKey]) {
+          grouped[monthKey] = [];
+        }
+        grouped[monthKey].push(partyInfo);
+      });
+      
+      setPartyDatesByMonth(grouped);
+    } catch {
+      // 에러 발생 시 빈 객체로 설정
+      setPartyDatesByMonth({});
+    } finally {
+      setLoadingParties(false);
+    }
+  }, []);
+
   // Google Sheets에서 파티 일정 조회
   useEffect(() => {
-    const loadParties = async () => {
-      setLoadingParties(true);
-      try {
-        const response = await fetch('/api/parties');
-        const data = await response.json();
-        const parties = data.parties || [];
-        
-        // 시트 데이터를 월별로 그룹화
-        const grouped: Record<string, PartyInfo[]> = {};
-        
-        parties.forEach((party: Record<string, string | number | undefined>) => {
-          let dateStr = String(party['날짜'] || '').trim();
-          if (!dateStr) return;
-          
-          // Date 객체의 문자열 표현인 경우 파싱 (예: "Fri Dec 19 2025 00:00:00 GMT+0900")
-          if (dateStr.includes('GMT') || dateStr.includes('Dec') || dateStr.includes('Jan') || dateStr.includes('Feb') || 
-              dateStr.includes('Mar') || dateStr.includes('Apr') || dateStr.includes('May') || dateStr.includes('Jun') ||
-              dateStr.includes('Jul') || dateStr.includes('Aug') || dateStr.includes('Sep') || dateStr.includes('Oct') ||
-              dateStr.includes('Nov')) {
-            try {
-              const dateObj = new Date(dateStr);
-              if (!isNaN(dateObj.getTime())) {
-                const year = dateObj.getFullYear();
-                const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-                const day = String(dateObj.getDate()).padStart(2, '0');
-                dateStr = `${year}-${month}-${day}`;
-              }
-            } catch {
-              // 파싱 실패 시 원본 문자열 사용
-            }
-          }
-          
-          // 날짜 파싱 (YYYY-MM-DD 형식)
-          const dateMatch = dateStr.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
-          if (!dateMatch) {
-            return;
-          }
-          
-          const year = dateMatch[1];
-          const month = dateMatch[2].padStart(2, '0');
-          const day = parseInt(dateMatch[3], 10);
-          const monthKey = `${year}-${month}`;
-          
-          // PartyInfo 형식으로 변환
-          const statusValue = String(party['상태'] || '').trim();
-          const categoryValue = String(party['파티타입'] || 'sulgaeting').trim();
-          
-          const partyInfo: PartyInfo = {
-            date: day,
-            status: (statusValue === '모집중' || statusValue === '마감') ? statusValue as "모집중" | "마감" : '마감',
-            title: party['제목'] ? String(party['제목']) : undefined,
-            time: party['시간'] ? String(party['시간']) : undefined,
-            ageRange: party['나이범위'] ? String(party['나이범위']) : undefined,
-            maleCount: party['남성인원'] ? Number(party['남성인원']) : undefined,
-            femaleCount: party['여성인원'] ? Number(party['여성인원']) : undefined,
-            note: party['비고'] ? String(party['비고']) : undefined,
-            category: (categoryValue === 'hexagon-party' || categoryValue === 'sulgaeting' || categoryValue === 'star-party') 
-              ? categoryValue 
-              : 'sulgaeting',
-          };
-          
-          if (!grouped[monthKey]) {
-            grouped[monthKey] = [];
-          }
-          grouped[monthKey].push(partyInfo);
-        });
-        
-        setPartyDatesByMonth(grouped);
-      } catch {
-        // 에러 발생 시 빈 객체로 설정
-        setPartyDatesByMonth({});
-      } finally {
-        setLoadingParties(false);
-      }
-    };
-    
     loadParties();
-  }, []);
+  }, [loadParties]);
 
   const getPartyDates = () => {
     const year = currentMonth.getFullYear();
@@ -255,15 +257,14 @@ export default function ReservationPage() {
   // 신청 현황 조회 함수 (더 이상 사용하지 않지만 호환성을 위해 유지)
   // 이제는 각 partyType별로 한 번씩만 호출하여 모든 데이터를 가져옵니다
 
-  // 모든 파티의 신청 현황 조회 (최적화: 각 partyType별로 한 번씩만 호출)
-  // 파티 정보가 로드된 후에 실행
-  useEffect(() => {
+  // 신청 현황 로드 함수 (재사용 가능)
+  const loadStats = useCallback(async () => {
     // 파티 정보가 아직 로드 중이면 대기
     if (loadingParties || Object.keys(partyDatesByMonth).length === 0) {
       return;
     }
     
-    const loadStats = async () => {
+    const fetchStats = async () => {
       setLoadingStats(true);
       const newStats: Record<string, ApplicationStats> = {};
       
@@ -327,8 +328,26 @@ export default function ReservationPage() {
       setLoadingStats(false);
     };
     
+    await fetchStats();
+  }, [partyDatesByMonth, loadingParties]);
+
+  // 모든 파티의 신청 현황 조회 (최적화: 각 partyType별로 한 번씩만 호출)
+  // 파티 정보가 로드된 후에 실행
+  useEffect(() => {
     loadStats();
-  }, [partyDatesByMonth, loadingParties]); // partyDatesByMonth가 변경될 때마다 실행
+  }, [loadStats]); // partyDatesByMonth가 변경될 때마다 실행
+
+  // 데이터 새로고침 함수
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      await Promise.all([loadParties(), loadStats()]);
+    } catch (error) {
+      console.error('데이터 새로고침 중 오류:', error);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white py-6 sm:py-8 md:py-12 lg:py-16 px-4 sm:px-6">
@@ -448,7 +467,11 @@ export default function ReservationPage() {
                           }`}
                           title={partyInfo.title}
                         >
-                          {partyInfo.title.length > 4 ? partyInfo.title.substring(0, 4) + "..." : partyInfo.title}
+                          {partyInfo.category === 'hexagon-party' 
+                            ? '육각형' 
+                            : partyInfo.title.length > 4 
+                            ? partyInfo.title.substring(0, 4) + "..." 
+                            : partyInfo.title}
                         </span>
                       )}
                       {isRecruiting && (
@@ -480,14 +503,46 @@ export default function ReservationPage() {
       {/* 신청현황 섹션 */}
       <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-4 sm:px-6">
         <div className="container mx-auto max-w-4xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-6 md:mb-8 lg:mb-12 text-[#0e6d62]"
-          >
-            신청현황
-          </motion.h2>
+          <div className="flex flex-col items-center gap-3 sm:gap-4 mb-4 sm:mb-6 md:mb-8 lg:mb-12">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center text-[#0e6d62]"
+            >
+              {currentMonth.getMonth() + 1}월 신청현황
+            </motion.h2>
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              onClick={handleRefresh}
+              disabled={isRefreshing || loadingParties || loadingStats}
+              className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg transition-all duration-200 text-sm sm:text-base font-semibold ${
+                isRefreshing || loadingParties || loadingStats
+                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  : 'bg-[#0e6d62] text-white hover:bg-[#059669] active:scale-95'
+              }`}
+              title="데이터 새로고침"
+            >
+              <svg
+                className={`w-4 h-4 sm:w-5 sm:h-5 ${isRefreshing || loadingParties || loadingStats ? 'animate-spin' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+              <span className="hidden sm:inline cursor-pointer">
+                {isRefreshing || loadingParties || loadingStats ? '갱신 중...' : '데이터 갱신'}
+              </span>
+            </motion.button>
+          </div>
 
           {loadingParties ? (
             <div className="text-center py-6 sm:py-8">
@@ -495,37 +550,27 @@ export default function ReservationPage() {
             </div>
           ) : (
             <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
-              {/* 모든 월의 파티들을 동적으로 표시 - 최신 날짜가 맨 위로 */}
-              {Object.entries(partyDatesByMonth)
-                .sort(([a], [b]) => b.localeCompare(a)) // 최신 날짜가 먼저 (내림차순)
-                .map(([monthKey, parties]) => {
-                  const [year, month] = monthKey.split('-');
-                  const monthNum = parseInt(month, 10);
-                  let previousPartiesCount = 0;
+              {/* 현재 보고 있는 달의 파티들만 표시 */}
+              {(() => {
+                const year = currentMonth.getFullYear();
+                const month = currentMonth.getMonth() + 1;
+                const monthKey = `${year}-${month.toString().padStart(2, "0")}`;
+                const parties = partyDatesByMonth[monthKey] || [];
+                
+                // 날짜 오름차순으로 정렬 (가장 오래된 날짜가 위, 최신 날짜가 아래)
+                const sortedParties = [...parties].sort((a, b) => a.date - b.date);
+                
+                return sortedParties.map((party, index) => {
+                  const dateString = `${year}-${month.toString().padStart(2, "0")}-${party.date.toString().padStart(2, "0")}`;
+                  const stats = statsByDate[dateString];
+                  const displayStats = stats || { total: 0, male: 0, female: 0, applications: [] };
                   
-                  // 이전 월들의 파티 개수 계산 (내림차순 기준)
-                  Object.entries(partyDatesByMonth)
-                    .sort(([a], [b]) => b.localeCompare(a))
-                    .forEach(([key, partyList]) => {
-                      if (key > monthKey) {
-                        previousPartiesCount += partyList.length;
-                      }
-                    });
-                  
-                  // 각 월 내의 파티들도 날짜 내림차순으로 정렬
-                  const sortedParties = [...parties].sort((a, b) => b.date - a.date);
-                  
-                  return sortedParties.map((party, index) => {
-                    const dateString = `${year}-${month}-${party.date.toString().padStart(2, "0")}`;
-                    const stats = statsByDate[dateString];
-                    const displayStats = stats || { total: 0, male: 0, female: 0, applications: [] };
-                    
-                    return (
-                      <motion.div
-                        key={`${monthKey}-${party.date}`}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: (previousPartiesCount + index) * 0.1 }}
+                  return (
+                    <motion.div
+                      key={`${monthKey}-${party.date}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
                         className={`border-2 rounded-lg p-3 sm:p-4 md:p-5 lg:p-6 ${
                           party.status === "모집중" 
                             ? `${getPartyBorderColor(party.category, true)} bg-white` 
@@ -536,7 +581,7 @@ export default function ReservationPage() {
                           <h3 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug sm:leading-tight ${
                             getPartyTextColor(party.category, party.status === "모집중")
                           }`}>
-                            ⭐️ {monthNum}/{party.date}({["일", "월", "화", "수", "목", "금", "토"][new Date(parseInt(year), monthNum - 1, party.date).getDay()]})
+                            ⭐️ {month}/{party.date}({["일", "월", "화", "수", "목", "금", "토"][new Date(year, month - 1, party.date).getDay()]})
                             {party.title && ` ${party.title}`}
                             {party.status === "모집중" ? " (모집중)" : " (마감)"}
                           </h3>
@@ -706,8 +751,7 @@ export default function ReservationPage() {
                       </motion.div>
                     );
                   });
-                })
-                .flat()}
+                })()}
             </div>
           )}
         </div>

@@ -17,7 +17,10 @@ interface ApplicationStats {
 
 export default function ReservationPage() {
   const router = useRouter();
-  const [currentMonth, setCurrentMonth] = useState(new Date(2025, 11, 1)); // 2025년 12월
+  const [currentMonth, setCurrentMonth] = useState(() => {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  });
   const [statsByDate, setStatsByDate] = useState<Record<string, ApplicationStats>>({});
   const [loadingStats, setLoadingStats] = useState(false);
   const [partyDatesByMonth, setPartyDatesByMonth] = useState<Record<string, PartyInfo[]>>({});

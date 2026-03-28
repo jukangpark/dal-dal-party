@@ -221,19 +221,16 @@ export default function HexagonPartyPage() {
                 <div className="bg-purple-50 rounded-xl sm:rounded-2xl px-5 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 border-3 border-purple-400 shadow-lg">
                   <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-1 sm:mb-2">남자</p>
                   <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-purple-600 leading-none">
-                    39,000원
+                    69,000원
                   </p>
                 </div>
                 <div className="bg-purple-50 rounded-xl sm:rounded-2xl px-5 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 border-3 border-purple-400 shadow-lg">
                   <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-1 sm:mb-2">여자</p>
                   <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-purple-600 leading-none">
-                    29,000원
+                    39,000원
                   </p>
                 </div>
               </div>
-              <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 font-medium">
-                (+1만원으로 애프터 파티 2시간 참여 가능)
-              </p>
             </div>
 
             {/* 안내사항 */}

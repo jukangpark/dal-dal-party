@@ -8,9 +8,9 @@ export default function CustomerServicePage() {
   const notices = [
     {
       id: 1,
-      title: "2025년 12월 파티 일정 안내",
-      date: "2025.12.01",
-      content: "12월 파티 일정이 확정되었습니다. 자세한 내용은 예약하기 페이지에서 확인해주세요.",
+      title: "2026년 파티 일정 안내",
+      date: "2026.03.28",
+      content: "2026년 파티 일정이 확정되었습니다. 자세한 내용은 예약하기 페이지에서 확인해주세요.",
       important: true,
     },
     {
@@ -37,8 +37,8 @@ export default function CustomerServicePage() {
     },
     {
       id: 2,
-      question: "참가비는 어떻게 입금하나요?",
-      answer: "신청 후 승인되신 분께만 개별적으로 입금 안내를 드립니다. 승인 안내와 함께 입금 계좌 정보를 함께 전달해드립니다.",
+      question: "참가비는 얼마인가요?",
+      answer: "술개팅 남성 59,000원(비음주 49,000원) / 여성 29,000원(비음주 19,000원)\n육각형파티 남성 69,000원 / 여성 39,000원\n신청 후 승인되신 분께만 개별적으로 입금 안내를 드립니다. 승인 안내와 함께 입금 계좌 정보를 함께 전달해드립니다.",
     },
     {
       id: 3,
@@ -58,7 +58,7 @@ export default function CustomerServicePage() {
     {
       id: 6,
       question: "술을 마시지 않아도 참가 가능한가요?",
-      answer: "네, 가능합니다. 비주류 참여도 가능하며, 비주류 참여 시 비용이 다릅니다. 자세한 내용은 각 파티 페이지에서 확인해주세요.",
+      answer: "네, 가능합니다. 비음주 참여도 가능하며, 비음주 참여 시 비용이 다릅니다. 자세한 내용은 각 파티 페이지에서 확인해주세요.",
     },
     {
       id: 7,
@@ -166,7 +166,7 @@ export default function CustomerServicePage() {
           </div>
         </section>
 
-        {/* 제휴 알림 섹션 */}
+        {/* 사업자등록증 섹션 */}
         <section className="mt-8 sm:mt-12 md:mt-16 lg:mt-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -175,35 +175,25 @@ export default function CustomerServicePage() {
             transition={{ duration: 0.6 }}
             className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-6 md:mb-8 text-[#0e6d62]"
           >
-            술개팅 X <span className="text-yellow-400">로멜로</span> 제휴
+            사업자등록증
           </motion.h2>
 
-          {/* 제휴 이미지 */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 lg:gap-6">
-            {[
-              "/술개팅 안전 업체/2.png",
-              "/술개팅 안전 업체/3.png",
-              "/술개팅 안전 업체/4.png",
-              "/술개팅 안전 업체/1.png",
-            ].map((imagePath, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative w-full aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
-              >
-                <Image
-                  src={imagePath}
-                  alt={`제휴 업체 ${index + 1}`}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-              </motion.div>
-            ))}
+          <div className="flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative w-full max-w-sm aspect-[3/4] rounded-lg overflow-hidden shadow-md"
+            >
+              <Image
+                src="/술개팅 안전 업체/1.png"
+                alt="사업자등록증"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 384px"
+              />
+            </motion.div>
           </div>
         </section>
       </div>

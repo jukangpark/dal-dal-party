@@ -167,7 +167,7 @@ export default function SulgaetingPage() {
                     술개팅은 광주 소개팅 업체 중 <span className="font-bold text-[#0e6d62]">가장 긴 대화 시간, 가장 낮은 비용</span>으로 진행하고 있습니다.
                   </p>
                   <p>
-                    <span className="font-semibold text-blue-600">1년간 실제 결혼 커플 2커플 탄생</span>
+                    <span className="font-semibold text-blue-600">1년간 실제 결혼 커플 3커플 탄생</span>
                   </p>
                   <p>
                     <span className="font-semibold text-emerald-600">상무지구 진행 → 소개팅 후 2차·다른 약속 이동 편리</span>
@@ -207,16 +207,16 @@ export default function SulgaetingPage() {
                 <div className="bg-emerald-50 rounded-xl sm:rounded-2xl px-5 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 border-3 border-emerald-400 shadow-lg">
                   <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-1 sm:mb-2">남자</p>
                   <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0e6d62] leading-none">
-                    50,000원
+                    59,000원
                   </p>
-                  <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-3">(비주류 40,000원)</p>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-3">(비음주 49,000원)</p>
                 </div>
                 <div className="bg-emerald-50 rounded-xl sm:rounded-2xl px-5 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 border-3 border-emerald-400 shadow-lg">
                   <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-1 sm:mb-2">여자</p>
                   <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0e6d62] leading-none">
-                    35,000원
+                    29,000원
                   </p>
-                  <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-3">(비주류 25,000원)</p>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-3">(비음주 19,000원)</p>
                 </div>
               </div>
             </div>

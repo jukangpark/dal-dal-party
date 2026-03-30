@@ -378,7 +378,7 @@ export default function Home() {
                     </motion.div>
                     
                     {/* 숫자 */}
-                    <div className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-2 sm:mb-3 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
+                    <div className={`text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold mb-2 sm:mb-3 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
                       <CountUpNumber value={stat.value} />
                     </div>
                     

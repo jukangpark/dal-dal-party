@@ -17,7 +17,7 @@ export default function StarPartyPage() {
   });
 
   // 1부터 20까지 이미지 경로 생성 (별별파티 후기)
-  const reviewImages = Array.from({ length: 20 }, (_, i) => i + 1).map((num) => {
+  const reviewImages = Array.from({ length: 27 }, (_, i) => i + 1).map((num) => {
     return `/별별파티 후기/${num}.png`;
   });
 

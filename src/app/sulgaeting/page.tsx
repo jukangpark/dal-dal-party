@@ -19,12 +19,12 @@ export default function SulgaetingPage() {
   });
 
   // 1부터 62까지 이미지 경로 생성 (술개팅 후기)
-  const reviewImages = Array.from({ length: 62 }, (_, i) => i + 1).map((num) => {
+  const reviewImages = Array.from({ length: 101 }, (_, i) => i + 1).map((num) => {
     return `/술개팅 후기/${num}.png`;
   });
 
   // 1부터 26까지 이미지 경로 생성 (실제 커플 후기)
-  const coupleImages = Array.from({ length: 29 }, (_, i) => {
+  const coupleImages = Array.from({ length: 44 }, (_, i) => {
     const num = i + 1;
     return `/술개팅 실제커플 후기/${num}.png`;
   });

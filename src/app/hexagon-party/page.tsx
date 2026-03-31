@@ -16,10 +16,6 @@ export default function HexagonPartyPage() {
     return `/육각형파티_소개/${num}.png`;
   });
 
-  const openModal = (index: number) => {
-    setSelectedImage(index);
-  };
-
   const closeModal = () => {
     setSelectedImage(null);
   };
@@ -377,6 +373,107 @@ export default function HexagonPartyPage() {
         </div>
       </section>
       
+      {/* 파티 현장 영상 섹션 */}
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-br from-emerald-50 via-white to-blue-50">
+        <div className="container mx-auto max-w-5xl">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-3 text-[#0e6d62]"
+          >
+            파티 현장 영상
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-center text-gray-500 mb-10 sm:mb-12 text-base sm:text-lg"
+          >
+            직접 확인해보세요
+          </motion.p>
+
+          {/* 참여조건 영상 - 상단 전체 너비 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-6 sm:mb-8"
+          >
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-emerald-100">
+              <div className="bg-[#0e6d62] px-5 py-3 flex items-center gap-2">
+                <span className="text-white text-lg">📋</span>
+                <h3 className="text-white font-bold text-base sm:text-lg">참여 조건 안내</h3>
+              </div>
+              <video
+                src="/육각형 파티 참여조건.mp4"
+                muted
+                loop
+                playsInline
+                controls
+                className="w-full h-auto"
+              >
+                브라우저가 비디오 태그를 지원하지 않습니다.
+              </video>
+            </div>
+          </motion.div>
+
+          {/* 현장 영상 2개 - 2열 그리드 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-blue-100 h-full">
+                <div className="bg-blue-500 px-5 py-3 flex items-center gap-2">
+                  <span className="text-white text-lg">🎉</span>
+                  <h3 className="text-white font-bold text-base sm:text-lg">파티 현장 1</h3>
+                </div>
+                <video
+                  src="/육각형 파티 영상1.mp4"
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  className="w-full h-auto"
+                >
+                  브라우저가 비디오 태그를 지원하지 않습니다.
+                </video>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-purple-100 h-full">
+                <div className="bg-purple-500 px-5 py-3 flex items-center gap-2">
+                  <span className="text-white text-lg">✨</span>
+                  <h3 className="text-white font-bold text-base sm:text-lg">파티 현장 2</h3>
+                </div>
+                <video
+                  src="/육각형파티영상2.mp4"
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  className="w-full h-auto"
+                >
+                  브라우저가 비디오 태그를 지원하지 않습니다.
+                </video>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       <ReviewsSection title="육각형파티 후기" />
       <GallerySection />
 

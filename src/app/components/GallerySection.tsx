@@ -1,6 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+
+const galleryImages = [
+  "/육각형파티_후기/육각형파티1.jpeg",
+  "/육각형파티_후기/육각형파티2.jpeg",
+  "/육각형파티_후기/육각형파티3.jpeg",
+  "/육각형파티_후기/육각형파티4.jpeg",
+];
 
 const GallerySection = () => {
   return (
@@ -14,14 +22,18 @@ const GallerySection = () => {
     >
       <div className="container mx-auto max-w-4xl">
         <h2 className="text-4xl font-bold text-center mb-12 text-[#0e6d62]">실제 파티 사진</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center border-2 border-gray-300">
-              <span className="text-4xl">📸</span>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {galleryImages.map((src, i) => (
+            <div key={i} className="aspect-square relative rounded-lg overflow-hidden">
+              <Image
+                src={src}
+                alt={`육각형파티 후기 ${i + 1}`}
+                fill
+                className="object-cover"
+              />
             </div>
           ))}
         </div>
-        <p className="text-center text-gray-500 text-sm mt-6">실제 파티 사진으로 교체 예정</p>
       </div>
     </motion.section>
   );

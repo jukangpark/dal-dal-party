@@ -514,6 +514,15 @@ const ApplyPage = () => {
                   <span className="text-xs text-gray-600">(안주/술/대관료/부대비용 포함된 금액)</span>
                 </div>
                 <div>
+                  <span className="font-semibold text-[#0e6d62]">일시:</span>{' '}
+                  {dateFromQuery
+                    ? (() => {
+                        const [y, m, d] = dateFromQuery.split('-');
+                        return `${y}년 ${parseInt(m)}월 ${parseInt(d)}일`;
+                      })()
+                    : '날짜 정보 없음'}
+                </div>
+                <div>
                   <span className="font-semibold text-[#0e6d62]">장소:</span> (선정자 개별공지 예정)
                 </div>
                 <div className="mt-4 bg-yellow-50 rounded p-3 border border-yellow-200">

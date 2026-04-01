@@ -466,7 +466,13 @@ const ApplyPage = () => {
               <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-center text-[#0e6d62]">📅 기본정보</h3>
               <div className="space-y-3 text-sm text-gray-700">
                 <div>
-                  <span className="font-semibold text-[#0e6d62]">일시:</span> 2025년 12월 20일(토) 19:00~23:00
+                  <span className="font-semibold text-[#0e6d62]">일시:</span>{' '}
+                  {dateFromQuery
+                    ? (() => {
+                        const [y, m, d] = dateFromQuery.split('-');
+                        return `${y}년 ${parseInt(m)}월 ${parseInt(d)}일`;
+                      })()
+                    : '날짜 정보 없음'}
                 </div>
                 <div>
                   <span className="font-semibold text-[#0e6d62]">장소:</span> 광주 프라이빗 파티룸 (승인자에게 개별 안내)

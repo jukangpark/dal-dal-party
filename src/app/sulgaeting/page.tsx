@@ -8,6 +8,7 @@ import CTASection from "../components/CTASection";
 import ReviewsSection from "../components/ReviewsSection";
 import sulgaetingReviews from "../constants/sulgaetingReviews";
 import sulgaetingReviewStats from "../constants/sulgaetingReviewStats";
+import { SULGAETING_PRICES, formatPrice } from "../constants/prices";
 
 export default function SulgaetingPage() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -207,16 +208,16 @@ export default function SulgaetingPage() {
                 <div className="bg-emerald-50 rounded-xl sm:rounded-2xl px-5 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 border-3 border-emerald-400 shadow-lg">
                   <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-1 sm:mb-2">남자</p>
                   <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0e6d62] leading-none">
-                    59,000원
+                    {formatPrice(SULGAETING_PRICES.male)}
                   </p>
-                  <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-3">(비음주 49,000원)</p>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-3">(비음주 {formatPrice(SULGAETING_PRICES.maleNonAlcohol)})</p>
                 </div>
                 <div className="bg-emerald-50 rounded-xl sm:rounded-2xl px-5 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 border-3 border-emerald-400 shadow-lg">
                   <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-1 sm:mb-2">여자</p>
                   <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0e6d62] leading-none">
-                    29,000원
+                    {formatPrice(SULGAETING_PRICES.female)}
                   </p>
-                  <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-3">(비음주 19,000원)</p>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-3">(비음주 {formatPrice(SULGAETING_PRICES.femaleNonAlcohol)})</p>
                 </div>
               </div>
             </div>

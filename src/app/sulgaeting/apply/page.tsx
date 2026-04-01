@@ -3,6 +3,7 @@
 import { useState, Suspense, useRef } from "react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
+import { SULGAETING_PRICES, formatPrice } from "../../constants/prices";
 
 
 const ApplyPage = () => {
@@ -506,9 +507,9 @@ const ApplyPage = () => {
                 <div>
                   <span className="font-semibold text-[#0e6d62]">참가비:</span>
                   <br />
-                  <span>남성: 5만원 / 음주 안하면 4만원</span>
+                  <span>남성: {formatPrice(SULGAETING_PRICES.male)} / 음주 안하면 {formatPrice(SULGAETING_PRICES.maleNonAlcohol)}</span>
                   <br />
-                  <span>여성: 3.5만원 / 음주 안하면 2.5만원</span>
+                  <span>여성: {formatPrice(SULGAETING_PRICES.female)} / 음주 안하면 {formatPrice(SULGAETING_PRICES.femaleNonAlcohol)}</span>
                   <br />
                   <span className="text-xs text-gray-600">(안주/술/대관료/부대비용 포함된 금액)</span>
                 </div>

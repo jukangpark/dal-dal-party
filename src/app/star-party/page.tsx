@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Banner from "../components/Banner";
 import CTASection from "../components/CTASection";
+import { STAR_PARTY_PRICES, formatPrice } from "../constants/prices";
 
 export default function StarPartyPage() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -143,11 +144,11 @@ export default function StarPartyPage() {
               <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-5">
                 <span className="text-4xl sm:text-5xl">💰</span>
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight">
-                  단돈 만원 한장으로 즐기는 자유롭고 즐거운 파티!
+                  단돈 {formatPrice(STAR_PARTY_PRICES.entryFee)} 한장으로 즐기는 자유롭고 즐거운 파티!
                 </h2>
               </div>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-semibold leading-relaxed mb-3 sm:mb-4">
-                참가비는 단돈 <span className="text-yellow-300 font-bold">만 원!</span> (술값 제외)
+                참가비는 단돈 <span className="text-yellow-300 font-bold">{formatPrice(STAR_PARTY_PRICES.entryFee)}!</span> (술값 제외)
               </p>
               <div className="space-y-2 sm:space-y-2.5 text-white/90">
                 <p className="text-sm sm:text-base md:text-lg">인원 제한 없이 누구나 부담없이 참석 가능!</p>
@@ -297,7 +298,7 @@ export default function StarPartyPage() {
                 <div className="space-y-2.5 sm:space-y-3">
                   <div className="flex items-start gap-2.5 sm:gap-3">
                     <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-                      참가비 만 원으로 2시간 + a 동안 부담 없이 즐기기
+                      참가비 {formatPrice(STAR_PARTY_PRICES.entryFee)}으로 2시간 + a 동안 부담 없이 즐기기
                     </p>
                   </div>
                   <div className="flex items-start gap-2.5 sm:gap-3">
@@ -471,7 +472,7 @@ export default function StarPartyPage() {
                       그 외
                     </p>
                     <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
-                      술값 N분의 1, 참여비 1만원
+                      술값 N분의 1, 참여비 {formatPrice(STAR_PARTY_PRICES.entryFee)}
                     </p>
                   </div>
                   <div className="mt-3 sm:mt-4 p-3 sm:p-4 md:p-5 bg-yellow-50 rounded-xl border border-yellow-200">

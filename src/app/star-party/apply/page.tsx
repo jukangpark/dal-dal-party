@@ -3,6 +3,7 @@
 import { useState, Suspense, useRef } from "react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
+import { STAR_PARTY_PRICES, formatPrice } from "../../constants/prices";
 
 
 const ApplyPage = () => {
@@ -483,7 +484,7 @@ const ApplyPage = () => {
                   <br />
                   <span>• 술개팅 참여자: 술값 N분의 1, 참여비 무료</span>
                   <br />
-                  <span>• 그 외: 술값 N분의 1, 참여비 1만원</span>
+                  <span>• 그 외: 술값 N분의 1, 참여비 {formatPrice(STAR_PARTY_PRICES.entryFee)}</span>
                   <br />
                   <span className="text-xs text-gray-600">(간단한 안주, 소주/맥주 무제한 제공)</span>
                 </div>

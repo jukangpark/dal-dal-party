@@ -4,6 +4,7 @@ import { useState, Suspense, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+import { HEXAGON_PARTY_PRICES, formatPrice } from "../../constants/prices";
 
 const MBTI_OPTIONS = [
   "INTJ", "INTP", "ENTJ", "ENTP",
@@ -474,9 +475,9 @@ const ApplyPage = () => {
                   <span className="font-semibold text-[#0e6d62]">인원:</span> 남 10~12 / 여 10~12 (성비 약 1.2~1 : 1) 최대 20명
                 </div>
                 <div>
-                  <span className="font-semibold text-[#0e6d62]">참가비:</span> 남 39,000원 / 여 29,000원
+                  <span className="font-semibold text-[#0e6d62]">참가비:</span> 남 {formatPrice(HEXAGON_PARTY_PRICES.male)} / 여 {formatPrice(HEXAGON_PARTY_PRICES.female)}
                   <br />
-                  <span>(+1만원으로 애프터 파티 2시간 참여 가능)</span>
+                  <span>(+{formatPrice(HEXAGON_PARTY_PRICES.afterParty)}으로 애프터 파티 2시간 참여 가능)</span>
                 </div>
                 <div className="mt-4">
                   <span className="font-semibold text-[#0e6d62]">형식:</span>

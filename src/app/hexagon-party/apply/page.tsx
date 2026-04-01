@@ -447,7 +447,7 @@ const ApplyPage = () => {
             {/* 파티 이미지 */}
             <div className="relative w-full aspect-square mb-4 md:mb-6 rounded-lg overflow-hidden">
               <Image
-                src="/육각형파티2기.jpeg"
+                src="/육각형파티폼사진.png"
                 alt="광주 육각형 남녀 파티"
                 fill
                 className="object-cover"

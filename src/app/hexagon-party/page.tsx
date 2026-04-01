@@ -67,7 +67,7 @@ export default function HexagonPartyPage() {
     <div className="min-h-screen bg-white">
       <Banner type="육각형 파티" />
       
-      {/* 육각형파티 소개 영상 섹션 */}
+      {/* 참여 조건 안내 영상 섹션 */}
       <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-4xl">
           <motion.h2
@@ -76,7 +76,7 @@ export default function HexagonPartyPage() {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-6 sm:mb-8 text-[#0e6d62]"
           >
-            육각형파티 소개 영상
+            참여 조건 안내
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -85,8 +85,7 @@ export default function HexagonPartyPage() {
             className="relative w-full rounded-lg overflow-hidden shadow-lg"
           >
             <video
-              src="/육각형남녀파티영상.mp4"
-              autoPlay
+              src="/육각형 파티 참여조건.mp4"
               muted
               loop
               playsInline
@@ -395,7 +394,7 @@ export default function HexagonPartyPage() {
             직접 확인해보세요
           </motion.p>
 
-          {/* 참여조건 영상 - 상단 전체 너비 */}
+          {/* 육각형파티 소개 영상 - 상단 전체 너비 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -405,11 +404,12 @@ export default function HexagonPartyPage() {
           >
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-emerald-100">
               <div className="bg-[#0e6d62] px-5 py-3 flex items-center gap-2">
-                <span className="text-white text-lg">📋</span>
-                <h3 className="text-white font-bold text-base sm:text-lg">참여 조건 안내</h3>
+                <span className="text-white text-lg">🎬</span>
+                <h3 className="text-white font-bold text-base sm:text-lg">육각형파티 소개 영상</h3>
               </div>
               <video
-                src="/육각형 파티 참여조건.mp4"
+                src="/육각형남녀파티영상.mp4"
+                autoPlay
                 muted
                 loop
                 playsInline
